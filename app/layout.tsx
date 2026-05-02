@@ -23,7 +23,7 @@ const ogDescription =
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#171717",
+  themeColor: "#7c3aed",
 };
 
 export const metadata: Metadata = {
@@ -37,8 +37,8 @@ export const metadata: Metadata = {
     statusBarStyle: "default",
   },
   icons: {
-    icon: [{ url: "/favicon-icon.png", type: "image/png" }],
-    apple: [{ url: "/favicon-icon.png", sizes: "180x180", type: "image/png" }],
+    icon: [{ url: "/dna-logo.png", type: "image/png" }],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
   },
   openGraph: {
     title: ogTitle,
