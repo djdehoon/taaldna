@@ -1,5 +1,7 @@
 "use client";
 
+import { TaalDNALabel } from "@/components/brand/TaalDNALabel";
+
 type Props = {
   stepIndex: number;
   totalSteps: number;
@@ -16,7 +18,7 @@ export function AssessmentProgress({ stepIndex, totalSteps }: Props) {
           <span>
             Oefening {current} van {totalSteps}
           </span>
-          <span>TaalDNA</span>
+          <TaalDNALabel />
         </div>
         <div
           className="h-1.5 w-full overflow-hidden rounded-full bg-muted"

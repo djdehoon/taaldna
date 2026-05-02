@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { TaalDNALabel } from "@/components/brand/TaalDNALabel";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -25,8 +26,8 @@ export default function Home() {
     <div className="flex min-h-screen flex-col bg-background px-6 py-14 sm:px-8 sm:py-20">
       <main className="mx-auto flex w-full max-w-xl flex-1 flex-col gap-12">
         <header className="flex flex-col gap-6 text-center sm:text-left">
-          <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
-            TaalDNA
+          <p className="text-muted-foreground">
+            <TaalDNALabel variant="kicker" />
           </p>
           <h1 className="text-balance font-sans text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
             Ontdek hoe jij talen leert
