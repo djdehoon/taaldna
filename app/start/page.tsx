@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { SiteKickerLink } from "@/components/layout/SiteKickerLink";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -19,8 +20,11 @@ const fade = {
 
 export default function StartPage() {
   return (
-    <div className="flex min-h-screen flex-col bg-background px-5 py-10 sm:px-8 sm:py-14">
-      <main className="mx-auto flex w-full max-w-lg flex-1 flex-col justify-center gap-8">
+    <div className="flex min-h-screen flex-col bg-background px-6 sm:px-8">
+      <div className="mx-auto w-full max-w-xl pt-10 sm:pt-14">
+        <SiteKickerLink />
+      </div>
+      <main className="mx-auto flex w-full max-w-xl flex-1 flex-col justify-center gap-8 pb-14 sm:pb-16">
         <motion.h1
           className="text-balance text-3xl font-semibold tracking-tight text-foreground sm:text-4xl"
           {...fade}

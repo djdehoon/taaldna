@@ -1,7 +1,8 @@
-import packageJson from "../package.json";
+/**
+ * App-versie voor UI (o.a. TaalDNALabel). Houd gelijk met `package.json` → `"version"` bij een release.
+ * Geen import van package.json: voorkomt bundler/server-edge problemen in client-trees.
+ */
+export const APP_VERSION = "1.1.0" as const;
 
-/** Semver uit `package.json`. Bij een release: `npm version patch` (1.0.1, 1.0.2, …) of handmatig verhogen. */
-export const APP_VERSION = packageJson.version;
-
-/** Altijd met `v`-prefix, bv. `v1.0.0`. */
-export const APP_VERSION_LABEL = `v${packageJson.version}`;
+/** Korte weergave in de header; semver staat in `APP_VERSION` / package.json. */
+export const APP_VERSION_LABEL = "v1.1" as const;

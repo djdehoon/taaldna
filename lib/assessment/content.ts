@@ -78,7 +78,7 @@ export const DERTIG_SECONDEN_SPLIT: SplitContent = {
 
 export const BOUW_DE_ZIN: BouwDeZinContent = {
   slug: "bouw-de-zin",
-  correctTokens: ["Ik", "wil", "vandaag", "Nederlands", "oefenen", "."],
+  correctTokens: ["Ik", "wil", "vandaag", "Spaans", "oefenen", "."],
 };
 
 /** Fisher–Yates shuffle (copy). */

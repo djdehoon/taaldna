@@ -1,6 +1,6 @@
 ## PROJECT: TaalDNA
 
-A Dutch language learning style assessment tool.
+A language-learning style assessment tool (UI in Dutch; works for any target language).
 Users complete 4 interactive exercises (not questionnaires).
 We measure behavior, not self-report.
 Result: a 2D profile (Processing Style × Social Style) + honest app recommendations.
@@ -54,3 +54,23 @@ Result: a 2D profile (Processing Style × Social Style) + honest app recommendat
 - Keep components small and focused
 - Use Framer Motion for page transitions
 - Show plan first, then execute
+
+## 🔧 DEV SERVER MANAGEMENT
+
+Before starting `npm run dev`, ALWAYS kill existing processes on ports 3000-3004:
+
+```powershell
+@(3000,3001,3002,3003,3004) | ForEach-Object {
+  $p = Get-NetTCPConnection -LocalPort $_ -EA SilentlyContinue
+  if ($p) { Stop-Process -Id $p.OwningProcess -Force }
+}
+```
+
+Then clear the Next.js cache and start fresh:
+```powershell
+Remove-Item -Recurse -Force .next -EA SilentlyContinue
+npm run dev
+```
+
+NEVER start `npm run dev` without first killing existing port processes.
+The dev server must always run on port 3000.

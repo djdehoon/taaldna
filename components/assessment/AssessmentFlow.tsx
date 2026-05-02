@@ -1,22 +1,35 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useCallback, useState } from "react";
 import { useRouter } from "next/navigation";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import type { AssessmentSessionPayload, ExerciseTrial } from "@/types";
 import { TAALDNA_ASSESSMENT_STORAGE_KEY } from "@/types";
 import { AssessmentProgress } from "@/components/assessment/AssessmentProgress";
+import { SiteKickerLink } from "@/components/layout/SiteKickerLink";
 import { ContextueelRaden } from "@/components/assessment/exercises/ContextueelRaden";
 import { LuisterEnSchrijf } from "@/components/assessment/exercises/LuisterEnSchrijf";
 import { DertigSecondenSplit } from "@/components/assessment/exercises/DertigSecondenSplit";
-import { BouwDeZin } from "@/components/assessment/exercises/BouwDeZin";
+
+/** dnd-kit + SSR op Vercel geeft nog weleens 500; alleen client-side laden. */
+const BouwDeZin = dynamic(
+  () =>
+    import("@/components/assessment/exercises/BouwDeZin").then((m) => m.BouwDeZin),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="flex flex-1 flex-col items-center justify-center px-6 py-12 text-muted-foreground sm:px-8">
+        <p className="text-sm">Laatste oefening laden…</p>
+      </div>
+    ),
+  }
+);
 
 const TOTAL = 4;
 
 export function AssessmentFlow() {
   const [step, setStep] = useState(0);
   const [, setTrials] = useState<ExerciseTrial[]>([]);
-  const reduceMotion = useReducedMotion();
   const router = useRouter();
 
   const handleComplete = useCallback(
@@ -48,29 +61,17 @@ export function AssessmentFlow() {
 
   return (
     <div className="flex min-h-screen flex-col bg-background">
+      <div className="px-6 pt-10 sm:px-8 sm:pt-12">
+        <div className="mx-auto w-full max-w-xl">
+          <SiteKickerLink />
+        </div>
+      </div>
       <AssessmentProgress stepIndex={step} totalSteps={TOTAL} />
-      <div className="flex flex-1 flex-col">
-        <AnimatePresence mode="wait" initial={false}>
-          <motion.div
-            key={step}
-            className="flex flex-1 flex-col"
-            initial={reduceMotion ? false : { opacity: 0, x: 14 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={reduceMotion ? undefined : { opacity: 0, x: -12 }}
-            transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-          >
-            {step === 0 && (
-              <ContextueelRaden onComplete={handleComplete} />
-            )}
-            {step === 1 && (
-              <LuisterEnSchrijf onComplete={handleComplete} />
-            )}
-            {step === 2 && (
-              <DertigSecondenSplit onComplete={handleComplete} />
-            )}
-            {step === 3 && <BouwDeZin onComplete={handleComplete} />}
-          </motion.div>
-        </AnimatePresence>
+      <div key={step} className="flex flex-1 flex-col">
+        {step === 0 && <ContextueelRaden onComplete={handleComplete} />}
+        {step === 1 && <LuisterEnSchrijf onComplete={handleComplete} />}
+        {step === 2 && <DertigSecondenSplit onComplete={handleComplete} />}
+        {step === 3 && <BouwDeZin onComplete={handleComplete} />}
       </div>
     </div>
   );

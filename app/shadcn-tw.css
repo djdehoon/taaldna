@@ -1,0 +1,3 @@
+/* shadcn / tw-animate (Tailwind v4-syntax). Apart bestand zodat globals.css eerst @tailwind kan verwerken. */
+@import "../node_modules/tw-animate-css/dist/tw-animate.css";
+@import "../node_modules/shadcn/dist/tailwind.css";

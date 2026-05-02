@@ -1,3 +1,5 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 import { APP_VERSION_LABEL } from "@/lib/app-version";
 

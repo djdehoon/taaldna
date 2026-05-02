@@ -108,7 +108,7 @@ export function LuisterEnSchrijf({ onComplete }: Props) {
   }, [value, onComplete, canSpeak, locked]);
 
   return (
-    <div className="mx-auto flex w-full max-w-lg flex-1 flex-col gap-6 px-4 pb-12 pt-8">
+    <div className="mx-auto flex w-full max-w-xl flex-1 flex-col gap-6 px-6 pb-12 pt-8 sm:px-8">
       <div className="space-y-2">
         <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
           Luister en schrijf
