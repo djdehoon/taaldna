@@ -32,7 +32,7 @@ export default function Home() {
           <header className="flex flex-col items-center gap-4 text-center sm:items-start sm:text-left">
             <p className="flex items-center justify-center gap-2 text-balance font-sans text-xl font-semibold tracking-tight text-foreground sm:justify-start sm:text-2xl">
               <Image
-                src="/DNA-min-logo.png"
+                src="/dna-logo.png"
                 alt=""
                 width={24}
                 height={24}
