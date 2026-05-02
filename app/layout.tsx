@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import "./shadcn-tw.css";
@@ -20,13 +20,25 @@ const ogTitle = "TaalDNA — Ontdek hoe jij écht talen leert";
 const ogDescription =
   "Krijg een persoonlijk taal leerprofiel op basis van jouw gedrag. In 9 minuten.";
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#171717",
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: appTitle,
   description:
     "Vier korte oefeningen, een helder 2D-profiel en eerlijke tips op basis van jouw gedrag — zonder lange vragenlijst.",
+  appleWebApp: {
+    capable: true,
+    title: "TaalDNA",
+    statusBarStyle: "default",
+  },
   icons: {
-    icon: "/favicon-icon.png",
+    icon: [{ url: "/favicon-icon.png", type: "image/png" }],
+    apple: [{ url: "/favicon-icon.png", sizes: "180x180", type: "image/png" }],
   },
   openGraph: {
     title: ogTitle,
