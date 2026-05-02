@@ -37,9 +37,9 @@ export type ResultaatQuadrant =
 
 export const PROFILE_LABELS: Record<ResultaatQuadrant, string> = {
   "analytisch-solo": "De Systematicus 📊",
-  "analytisch-sociaal": "De Strateeg 🎯",
+  "analytisch-sociaal": "De Verbinder 🔗",
   "intuitief-solo": "De Ontdekker 🔍",
-  "intuitief-sociaal": "De Verbinder 🌐",
+  "intuitief-sociaal": "De Avonturier 🧭",
 };
 
 export function parseSessionPayload(raw: string | null): AssessmentSessionPayload | null {

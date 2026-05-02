@@ -15,7 +15,10 @@ import { APPS_IN_SPACE, appsWithMatches, normalizeScores } from "@/lib/resultaat
 import { SiteKickerLink } from "@/components/layout/SiteKickerLink";
 import { AxisPlot } from "@/components/resultaat/AxisPlot";
 import { DimensionSection } from "@/components/resultaat/DimensionSection";
+import { ExerciseInfluenceSection } from "@/components/resultaat/ExerciseInfluenceSection";
+import { ProfileRolesSection } from "@/components/resultaat/ProfileRolesSection";
 import { AppMatchSection } from "@/components/resultaat/AppMatchSection";
+import { VergelijkToolsSection } from "@/components/resultaat/VergelijkToolsSection";
 
 type Props = {
   payload: AssessmentSessionPayload;
@@ -61,6 +64,22 @@ export function ResultaatResultsBody({ payload }: Props) {
           <DimensionSection ux={ux} uy={uy} />
         </motion.div>
 
+        <motion.div
+          initial={reduceMotion ? false : { opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.4, delay: 0.13 }}
+        >
+          <ExerciseInfluenceSection />
+        </motion.div>
+
+        <motion.div
+          initial={reduceMotion ? false : { opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.4, delay: 0.14 }}
+        >
+          <ProfileRolesSection activeQuadrant={quadrant} />
+        </motion.div>
+
         <motion.p
           className="text-pretty text-base leading-relaxed text-muted-foreground"
           initial={reduceMotion ? false : { opacity: 0 }}
@@ -76,6 +95,14 @@ export function ResultaatResultsBody({ payload }: Props) {
           transition={{ duration: 0.4, delay: 0.18 }}
         >
           <AppMatchSection apps={rankedApps} />
+        </motion.div>
+
+        <motion.div
+          initial={reduceMotion ? false : { opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.2 }}
+        >
+          <VergelijkToolsSection />
         </motion.div>
 
         <div className="flex justify-center pt-2">

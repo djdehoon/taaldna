@@ -6,7 +6,8 @@ export type ContextueelContent = {
   before: string;
   /** Text after the gap */
   after: string;
-  options: { id: string; label: string }[];
+  /** Zichtbare waarde per keuze (bijv. positienummer); apart van label voor duidelijke knoppen. */
+  options: { id: string; label: string; value: string }[];
   correctOptionId: string;
 };
 
@@ -40,13 +41,29 @@ export type BouwDeZinContent = {
 
 export const CONTEXTUEEL_RADEN: ContextueelContent = {
   slug: "contextueel-raden",
-  before: "Ze nam een grote hap van het warme ",
-  after: " en proefde kaneel en appel.",
+  before: "Plaats de marker op positie ",
+  after: " en bevestig je keuze.",
   options: [
-    { id: "a", label: "gebak" },
-    { id: "b", label: "soep" },
-    { id: "c", label: "brood" },
-    { id: "d", label: "ijs" },
+    {
+      id: "a",
+      value: "1",
+      label: "Direct aan het begin van het leerpad",
+    },
+    {
+      id: "b",
+      value: "2",
+      label: "Vroeg, net na de eerste stappen",
+    },
+    {
+      id: "c",
+      value: "3",
+      label: "Rond het midden van je traject",
+    },
+    {
+      id: "d",
+      value: "4",
+      label: "Dicht bij het einddoel",
+    },
   ],
   correctOptionId: "a",
 };
@@ -67,7 +84,7 @@ export const DERTIG_SECONDEN_SPLIT: SplitContent = {
   left: {
     id: "solo",
     title: "Rust thuis",
-    body: "Een uur voor jezelf, kop thee, woordenlijst en koptelefoon — even helemaal niemand om je heen.",
+    body: "Een uur voor jezelf, kop thee, notities en koptelefoon — even helemaal niemand om je heen.",
   },
   right: {
     id: "sociaal",
@@ -78,7 +95,7 @@ export const DERTIG_SECONDEN_SPLIT: SplitContent = {
 
 export const BOUW_DE_ZIN: BouwDeZinContent = {
   slug: "bouw-de-zin",
-  correctTokens: ["Ik", "wil", "vandaag", "Spaans", "oefenen", "."],
+  correctTokens: ["Zet", "de", "onderdelen", "in", "deze", "volgorde", "."],
 };
 
 /** Fisher–Yates shuffle (copy). */

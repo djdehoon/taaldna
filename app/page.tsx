@@ -29,8 +29,11 @@ export default function Home() {
           <SiteKickerLink />
           <header className="flex flex-col gap-6 text-center sm:text-left">
             <h1 className="text-balance font-sans text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-              Ontdek hoe jij talen leert
+              TaalDNA / Jouw taalleerstijl
             </h1>
+            <h2 className="text-balance font-sans text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+              Ontdek hoe jij talen leert
+            </h2>
             <p className="text-balance font-sans text-lg leading-relaxed text-muted-foreground sm:text-xl">
               Geen lange vragenlijst — we meten gedrag in korte oefeningen. Je krijgt een helder
               profiel en eerlijke tips, ook voor Nederlands.
@@ -78,6 +81,26 @@ export default function Home() {
             ))}
           </ol>
         </section>
+
+        <footer className="border-t border-gray-200 pt-8 text-center sm:text-left">
+          <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+            Vergelijken
+          </p>
+          <div className="mt-3 flex flex-col gap-2 text-sm text-muted-foreground sm:flex-row sm:gap-6">
+            <Link
+              href="/vergelijk/taaldna"
+              className="underline-offset-4 hover:text-foreground hover:underline"
+            >
+              TaalDNA vs. andere tools
+            </Link>
+            <Link
+              href="/vergelijk/polycards"
+              className="underline-offset-4 hover:text-foreground hover:underline"
+            >
+              PolyCards vs. flashcard-apps
+            </Link>
+          </div>
+        </footer>
       </main>
     </div>
   );

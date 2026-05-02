@@ -43,10 +43,11 @@ export function AssessmentFlow() {
             trials: next,
           };
           try {
-            sessionStorage.setItem(
+            localStorage.setItem(
               TAALDNA_ASSESSMENT_STORAGE_KEY,
               JSON.stringify(payload)
             );
+            sessionStorage.removeItem(TAALDNA_ASSESSMENT_STORAGE_KEY);
           } catch {
             /* private mode / quota */
           }

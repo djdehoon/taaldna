@@ -11,9 +11,15 @@ import { ResultaatResultsBody } from "@/components/resultaat/ResultaatResultsBod
 function readPayloadFromStorage(): AssessmentSessionPayload | null {
   if (typeof window === "undefined") return null;
   try {
-    return parseSessionPayload(
-      sessionStorage.getItem(TAALDNA_ASSESSMENT_STORAGE_KEY)
-    );
+    let raw = localStorage.getItem(TAALDNA_ASSESSMENT_STORAGE_KEY);
+    if (!raw) {
+      raw = sessionStorage.getItem(TAALDNA_ASSESSMENT_STORAGE_KEY);
+      if (raw) {
+        localStorage.setItem(TAALDNA_ASSESSMENT_STORAGE_KEY, raw);
+        sessionStorage.removeItem(TAALDNA_ASSESSMENT_STORAGE_KEY);
+      }
+    }
+    return parseSessionPayload(raw);
   } catch {
     return null;
   }

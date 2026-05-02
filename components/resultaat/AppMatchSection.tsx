@@ -11,8 +11,11 @@ export function AppMatchSection({ apps }: Props) {
   return (
     <section className="flex flex-col gap-4" aria-labelledby="apps-heading">
       <h2 id="apps-heading" className="text-lg font-semibold tracking-tight text-foreground">
-        Apps in jouw leer-ruimte
+        Apps in jouw leerruimte
       </h2>
+      <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+        AppSignaalruimte
+      </p>
       <p className="text-sm text-muted-foreground">
         Gesorteerd op overlap met jouw profiel in het vlak (hoger = dichter bij jou op de kaart).
       </p>

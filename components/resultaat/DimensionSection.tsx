@@ -24,7 +24,7 @@ export function DimensionSection({ ux, uy }: Props) {
   return (
     <section className="flex flex-col gap-10" aria-labelledby="dim-heading">
       <h2 id="dim-heading" className="text-lg font-semibold tracking-tight text-foreground">
-        Wat deze assen betekenen
+        Wat de assen betekenen
       </h2>
 
       <div className={dimensionCardClass}>

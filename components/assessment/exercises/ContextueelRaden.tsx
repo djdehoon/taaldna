@@ -16,7 +16,7 @@ export function ContextueelRaden({ onComplete }: Props) {
   const [locked, setLocked] = useState(false);
 
   const choose = useCallback(
-    (id: string, label: string) => {
+    (id: string, value: string, label: string) => {
       if (locked) return;
       setLocked(true);
       const responseTimeMs = Math.round(performance.now() - startRef.current);
@@ -25,7 +25,7 @@ export function ContextueelRaden({ onComplete }: Props) {
         responseTimeMs,
         completedAt: new Date().toISOString(),
         choiceId: id,
-        choiceLabel: label,
+        choiceLabel: `${value}: ${label}`,
       });
     },
     [onComplete, locked]
@@ -38,7 +38,8 @@ export function ContextueelRaden({ onComplete }: Props) {
           Contextueel raden
         </p>
         <p className="text-sm text-muted-foreground">
-          Lees de zin. Welk woord past het best op de lege plek?
+          Lees de zin. Kies intuïtief welke positie (1–4) je zou markeren — er is geen fout
+          antwoord.
         </p>
       </div>
 
@@ -58,10 +59,19 @@ export function ContextueelRaden({ onComplete }: Props) {
             variant="outline"
             size="lg"
             disabled={locked}
-            className="h-auto min-h-12 w-full justify-start whitespace-normal px-4 py-3 text-left text-base font-normal"
-            onClick={() => choose(opt.id, opt.label)}
+            className="h-auto min-h-14 w-full justify-start gap-3 whitespace-normal px-4 py-3 text-left"
+            onClick={() => choose(opt.id, opt.value, opt.label)}
           >
-            {opt.label}
+            <span
+              className="flex size-10 shrink-0 items-center justify-center rounded-lg border border-border bg-muted/40 font-mono text-lg font-semibold tabular-nums"
+              aria-hidden
+            >
+              {opt.value}
+            </span>
+            <span className="min-w-0 flex-1 text-base font-normal leading-snug">
+              <span className="sr-only">Positie {opt.value}. </span>
+              {opt.label}
+            </span>
           </Button>
         ))}
       </div>

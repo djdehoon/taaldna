@@ -107,7 +107,7 @@ export type ExerciseTrial =
   | DertigSecondenSplitTrial
   | BouwDeZinTrial;
 
-/** Payload stored in sessionStorage under TAALDNA_ASSESSMENT_STORAGE_KEY. */
+/** Payload stored in localStorage under TAALDNA_ASSESSMENT_STORAGE_KEY. */
 export interface AssessmentSessionPayload {
   version: 1;
   savedAt: string;
