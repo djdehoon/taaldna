@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { PageTransition } from "@/components/page-transition";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
+const sans = Inter({
+  subsets: ["latin", "latin-ext"],
   variable: "--font-sans",
-  weight: "100 900",
   display: "swap",
 });
 
@@ -23,10 +22,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="nl" className={cn(geistSans.variable, "theme font-sans")}>
+    <html lang="nl" className={cn(sans.variable, "theme font-sans")}>
       <body
         className={cn(
-          geistSans.className,
+          sans.className,
           "min-h-screen bg-background font-sans text-foreground antialiased"
         )}
       >
