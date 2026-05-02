@@ -26,6 +26,7 @@ export function buildReportEmailHtml(data: SendReportBody): string {
     <tr><td align="center">
       <table role="presentation" width="100%" style="max-width:560px;background:#ffffff;border-radius:12px;padding:28px 24px;border:1px solid #e2e8f0;">
         <tr><td>
+          <img src="${escapeHtml(`${site}/email-header.png`)}" width="280" style="display:block;margin:0 auto 24px auto;" alt="TaalDNA" />
           <h1 style="margin:0 0 8px;font-size:22px;color:#1e293b;">Hoi! Hier is jouw TaalDNA-profiel 🧬</h1>
           <p style="margin:0 0 20px;font-size:16px;color:#64748b;">Samenvatting en tips — het volledige rapport vind je in de bijlage (PDF).</p>
           <h2 style="margin:0 0 8px;font-size:20px;color:#7c3aed;">${safeName}</h2>

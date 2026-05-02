@@ -7,6 +7,7 @@ import type {
   ExerciseSlug,
   LuisterEnSchrijfTrial,
 } from "@/types";
+import { PROFILE_ROLE_META } from "@/lib/resultaat/profileRoleMeta";
 
 const RT_MIN_MS = 800;
 const RT_MAX_MS = 25_000;
@@ -47,10 +48,10 @@ export type ResultaatQuadrant =
   | "intuitief-sociaal";
 
 export const PROFILE_LABELS: Record<ResultaatQuadrant, string> = {
-  "analytisch-solo": "De Systematicus 📊",
-  "analytisch-sociaal": "De Verbinder 🔗",
-  "intuitief-solo": "De Ontdekker 🔍",
-  "intuitief-sociaal": "De Avonturier 🧭",
+  "analytisch-solo": PROFILE_ROLE_META["analytisch-solo"].displayName,
+  "analytisch-sociaal": PROFILE_ROLE_META["analytisch-sociaal"].displayName,
+  "intuitief-solo": PROFILE_ROLE_META["intuitief-solo"].displayName,
+  "intuitief-sociaal": PROFILE_ROLE_META["intuitief-sociaal"].displayName,
 };
 
 export function parseSessionPayload(raw: string | null): AssessmentSessionPayload | null {

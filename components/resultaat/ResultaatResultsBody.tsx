@@ -16,6 +16,7 @@ import { SiteKickerLink } from "@/components/layout/SiteKickerLink";
 import { AxisPlot } from "@/components/resultaat/AxisPlot";
 import { DimensionSection } from "@/components/resultaat/DimensionSection";
 import { ExerciseInfluenceSection } from "@/components/resultaat/ExerciseInfluenceSection";
+import { ProfileRoleIconBadge } from "@/components/resultaat/ProfileRoleIconBadge";
 import { ProfileRolesSection } from "@/components/resultaat/ProfileRolesSection";
 import { AppMatchSection } from "@/components/resultaat/AppMatchSection";
 import { VergelijkToolsSection } from "@/components/resultaat/VergelijkToolsSection";
@@ -42,12 +43,13 @@ export function ResultaatResultsBody({ payload }: Props) {
           <SiteKickerLink className="mb-0" />
         </div>
         <motion.h1
-          className="text-balance text-center text-3xl font-semibold tracking-tight sm:text-4xl"
+          className="flex flex-wrap items-center justify-center gap-3 text-center text-3xl font-semibold tracking-tight sm:text-4xl"
           initial={reduceMotion ? false : { opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
         >
-          {profileTitle}
+          <ProfileRoleIconBadge quadrant={quadrant} size="md" />
+          <span className="text-balance">{profileTitle}</span>
         </motion.h1>
 
         <motion.div

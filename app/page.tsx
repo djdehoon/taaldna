@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { VergelijkComparisonNavItem } from "@/components/vergelijk/VergelijkComparisonNavItem";
 import { SiteKickerLink } from "@/components/layout/SiteKickerLink";
@@ -28,14 +29,22 @@ export default function Home() {
       <main className="mx-auto flex w-full max-w-xl flex-1 flex-col gap-12 pt-10 sm:pt-14">
         <div>
           <SiteKickerLink />
-          <header className="flex flex-col gap-6 text-center sm:text-left">
+          <header className="flex flex-col items-center gap-4 text-center sm:items-start sm:text-left">
+            <p className="flex items-center justify-center gap-2 text-balance font-sans text-xl font-semibold tracking-tight text-foreground sm:justify-start sm:text-2xl">
+              <Image
+                src="/DNA-min-logo.png"
+                alt=""
+                width={24}
+                height={24}
+                className="h-6 w-6 shrink-0 object-contain opacity-90"
+                aria-hidden
+              />
+              <span>TaalDNA / Jouw taalleerstijl</span>
+            </p>
             <h1 className="text-balance font-sans text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-              TaalDNA / Jouw taalleerstijl
-            </h1>
-            <h2 className="text-balance font-sans text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
               Ontdek hoe jij talen leert
-            </h2>
-            <p className="text-balance font-sans text-lg leading-relaxed text-muted-foreground sm:text-xl">
+            </h1>
+            <p className="mx-auto max-w-lg text-balance font-sans text-base leading-relaxed text-muted-foreground sm:mx-0 sm:text-lg">
               Geen lange vragenlijst — we meten gedrag in korte oefeningen. Je krijgt een helder
               profiel en eerlijke tips, ook voor Nederlands.
             </p>

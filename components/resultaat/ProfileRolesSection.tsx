@@ -1,44 +1,9 @@
 "use client";
 
 import type { ResultaatQuadrant } from "@/lib/resultaat/scoreTrials";
+import { PROFILE_ROLE_META, PROFILE_ROLE_ORDER } from "@/lib/resultaat/profileRoleMeta";
+import { ProfileRoleIconBadge } from "@/components/resultaat/ProfileRoleIconBadge";
 import { cn } from "@/lib/utils";
-
-const ROLES: {
-  quadrant: ResultaatQuadrant;
-  name: string;
-  emoji: string;
-  axes: string;
-  description: string;
-}[] = [
-  {
-    quadrant: "intuitief-sociaal",
-    name: "De Avonturier",
-    emoji: "🧭",
-    axes: "Intuïtief + Sociaal",
-    description: "Leert via gesprekken en immersie.",
-  },
-  {
-    quadrant: "analytisch-sociaal",
-    name: "De Verbinder",
-    emoji: "🔗",
-    axes: "Analytisch + Sociaal",
-    description: "Combineert structuur met contact.",
-  },
-  {
-    quadrant: "intuitief-solo",
-    name: "De Ontdekker",
-    emoji: "🔍",
-    axes: "Intuïtief + Solo",
-    description: "Leert op eigen tempo via context.",
-  },
-  {
-    quadrant: "analytisch-solo",
-    name: "De Systematicus",
-    emoji: "📊",
-    axes: "Analytisch + Solo",
-    description: "Leert via herhaling en structuur.",
-  },
-];
 
 type Props = {
   activeQuadrant: ResultaatQuadrant;
@@ -54,25 +19,24 @@ export function ProfileRolesSection({ activeQuadrant }: Props) {
         Vier profielen in het vlak — jouw resultaat is er één van.
       </p>
       <ul className="grid gap-3 sm:grid-cols-2">
-        {ROLES.map((role) => {
-          const active = role.quadrant === activeQuadrant;
+        {PROFILE_ROLE_ORDER.map((quadrant) => {
+          const active = quadrant === activeQuadrant;
+          const role = PROFILE_ROLE_META[quadrant];
           return (
             <li
-              key={role.quadrant}
+              key={quadrant}
               className={cn(
-                "rounded-xl border bg-white px-4 py-4 text-left transition-shadow sm:px-5",
+                "rounded-xl border bg-white px-4 py-5 text-left transition-shadow sm:px-5",
                 active
                   ? "border-primary shadow-lg shadow-primary/25 ring-2 ring-primary/40"
                   : "border-gray-200 shadow-sm"
               )}
             >
-              <p className="text-lg font-semibold text-foreground">
-                <span className="mr-2" aria-hidden>
-                  {role.emoji}
-                </span>
-                {role.name}
+              <p className="flex items-start gap-3 text-lg font-semibold text-foreground">
+                <ProfileRoleIconBadge quadrant={quadrant} size="md" className="mt-0.5" />
+                {role.displayName}
               </p>
-              <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+              <p className="mt-2.5 text-xs font-medium uppercase tracking-wide text-muted-foreground">
                 {role.axes}
               </p>
               <p className="mt-2 text-base leading-relaxed text-muted-foreground">
