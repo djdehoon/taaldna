@@ -36,15 +36,22 @@ export const polycardsStarRows: { criterion: string; scores: number[] }[] = [
   { criterion: "🏆 Track record & vertrouwen", scores: [1, 5, 5, 4, 4, 4] },
 ];
 
+function roundToOneDecimal(n: number): number {
+  return Math.round(n * 10) / 10;
+}
+
 /** Gemiddelde sterren per kolom over alle rijen in `polycardsStarRows` (afgerond op 1 decimaal). */
-const polycardsAveragesUnsorted: { label: string; value: number }[] = [
-  { label: "PolyCards", value: 3.2 },
-  { label: "Duolingo", value: 4.4 },
-  { label: "Anki", value: 4.1 },
-  { label: "Quizlet", value: 3.8 },
-  { label: "Babbel", value: 3.5 },
-  { label: "Memrise", value: 3.8 },
-];
+const polycardsAveragesUnsorted: { label: string; value: number }[] =
+  polycardsColumnLabels.map((label, colIndex) => {
+    const sum = polycardsStarRows.reduce(
+      (acc, row) => acc + row.scores[colIndex],
+      0
+    );
+    return {
+      label,
+      value: roundToOneDecimal(sum / polycardsStarRows.length),
+    };
+  });
 
 /** Aflopend op gemiddelde; bij gelijke score alfabetisch (nl). */
 export const polycardsAverages: { label: string; value: number }[] = [

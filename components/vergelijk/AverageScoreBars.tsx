@@ -6,25 +6,37 @@ type Item = { label: string; value: number };
 
 type Props = {
   items: Item[];
-  /** Eerste item (eigen product) extra nadruk. */
-  highlightFirst?: boolean;
+  /**
+   * Exacte label-string van de eigen tool (bijv. "TaalDNA"): zichtbaar kader.
+   * Andere rijen krijgen dezelfde randbreedte in het transparant zodat balken uitlijnen.
+   */
+  highlightLabel?: string;
 };
 
-export function AverageScoreBars({ items, highlightFirst = true }: Props) {
+export function AverageScoreBars({ items, highlightLabel }: Props) {
   return (
-    <ul className="flex flex-col gap-4">
-      {items.map((item, idx) => (
+    <ul className="flex flex-col gap-2">
+      {items.map((item) => {
+        const isHighlight =
+          highlightLabel !== undefined && item.label === highlightLabel;
+        const balanceColumns = highlightLabel !== undefined;
+
+        return (
         <li
           key={item.label}
           className={cn(
-            highlightFirst && idx === 0 && "rounded-xl border border-violet-500/40 bg-violet-950/15 p-3 sm:p-4"
+            balanceColumns && "rounded-xl",
+            isHighlight && "border border-violet-500/40 bg-violet-950/15 p-3 sm:p-4",
+            balanceColumns &&
+              !isHighlight &&
+              "border border-transparent px-3 py-1.5 sm:px-4 sm:py-2"
           )}
         >
-          <div className="mb-1.5 flex items-baseline justify-between gap-2">
+          <div className="mb-1 flex items-baseline justify-between gap-2">
             <span className="text-sm font-medium text-zinc-200">{item.label}</span>
             <span className="tabular-nums text-sm text-zinc-400">{item.value.toFixed(1)}</span>
           </div>
-          <div className="h-2.5 w-full overflow-hidden rounded-full bg-zinc-800/90">
+          <div className="h-2 w-full overflow-hidden rounded-full bg-zinc-800/90 sm:h-2.5">
             <div
               className="h-full rounded-full bg-gradient-to-r from-[#7c3aed] to-[#06b6d4] transition-[width] duration-500"
               style={{ width: `${(item.value / 5) * 100}%` }}
@@ -36,7 +48,8 @@ export function AverageScoreBars({ items, highlightFirst = true }: Props) {
             />
           </div>
         </li>
-      ))}
+        );
+      })}
     </ul>
   );
 }

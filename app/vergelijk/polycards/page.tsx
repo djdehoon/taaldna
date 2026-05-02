@@ -49,7 +49,7 @@ export default function VergelijkPolycardsPage() {
           <h2 id="polycards-bars-heading" className="text-lg font-semibold text-zinc-100">
             Gemiddelde scores
           </h2>
-          <AverageScoreBars items={polycardsAverages} highlightFirst={false} />
+          <AverageScoreBars items={polycardsAverages} />
         </section>
 
         <section className="flex flex-col gap-4" aria-labelledby="polycards-honest-heading">

@@ -49,7 +49,7 @@ export default function VergelijkTaalDnaPage() {
           <h2 id="taaldna-bars-heading" className="text-lg font-semibold text-zinc-100">
             Gemiddelde scores
           </h2>
-          <AverageScoreBars items={taaldnaAverages} />
+          <AverageScoreBars items={taaldnaAverages} highlightLabel="TaalDNA" />
         </section>
 
         <section className="flex flex-col gap-4" aria-labelledby="taaldna-honest-heading">

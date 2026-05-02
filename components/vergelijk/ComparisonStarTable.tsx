@@ -22,9 +22,23 @@ type Props = {
   highlightColumnIndex?: number;
 };
 
+function roundToOneDecimal(n: number): number {
+  return Math.round(n * 10) / 10;
+}
+
 export function ComparisonStarTable({ columnLabels, rows, highlightColumnIndex }: Props) {
   const highlightClass =
     "border-l border-r border-violet-500/70 bg-violet-950/25 shadow-[0_0_24px_-8px_rgba(124,58,237,0.45)]";
+
+  const rowCount = rows.length;
+  const columnAverages =
+    rowCount === 0
+      ? columnLabels.map(() => 0)
+      : columnLabels.map((_, colIdx) =>
+          roundToOneDecimal(
+            rows.reduce((acc, row) => acc + row.scores[colIdx], 0) / rowCount
+          )
+        );
 
   return (
     <div className="overflow-x-auto rounded-xl border border-zinc-700/60 bg-[#141428]/80">
@@ -78,6 +92,29 @@ export function ComparisonStarTable({ columnLabels, rows, highlightColumnIndex }
             </tr>
           ))}
         </tbody>
+        <tfoot>
+          <tr className="border-t border-zinc-700/80">
+            <th
+              scope="row"
+              className="sticky left-0 z-10 min-w-[12rem] bg-[#0f0f1a] px-3 py-3 pr-4 text-left text-xs font-semibold uppercase tracking-wide text-zinc-400 sm:min-w-[14rem]"
+            >
+              Gemiddelde
+            </th>
+            {columnAverages.map((avg, colIdx) => (
+              <td
+                key={`avg-${colIdx}`}
+                className={cn(
+                  "px-3 py-3 text-center text-sm font-medium tabular-nums text-zinc-200 sm:px-4",
+                  highlightColumnIndex !== undefined &&
+                    colIdx === highlightColumnIndex &&
+                    highlightClass
+                )}
+              >
+                {avg.toFixed(1)}
+              </td>
+            ))}
+          </tr>
+        </tfoot>
       </table>
     </div>
   );
