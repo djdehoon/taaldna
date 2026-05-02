@@ -2,8 +2,6 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import "./shadcn-tw.css";
-import { APP_VERSION_LABEL } from "@/lib/app-version";
-import { getPublicSiteUrl } from "@/lib/report/site-url";
 import { cn } from "@/lib/utils";
 import { PageTransition } from "@/components/page-transition";
 
@@ -13,13 +11,6 @@ const inter = Inter({
   display: "swap",
 });
 
-const appTitle = `TaalDNA / Jouw taalleerstijl · ${APP_VERSION_LABEL}`;
-
-const siteUrl = getPublicSiteUrl();
-const ogTitle = "TaalDNA — Ontdek hoe jij écht talen leert";
-const ogDescription =
-  "Krijg een persoonlijk taal leerprofiel op basis van jouw gedrag. In 9 minuten.";
-
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
@@ -27,40 +18,40 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
-  title: appTitle,
+  title: "TaalDNA — Ontdek hoe jij écht talen leert",
   description:
-    "Vier korte oefeningen, een helder 2D-profiel en eerlijke tips op basis van jouw gedrag — zonder lange vragenlijst.",
-  appleWebApp: {
-    capable: true,
-    title: "TaalDNA",
-    statusBarStyle: "default",
-  },
-  icons: {
-    icon: [{ url: "/dna-logo.png", type: "image/png" }],
-    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
-  },
+    "Geen vragenlijst. We meten gedrag in korte oefeningen. Krijg een persoonlijk taalleerprofiel in 9 minuten.",
+
   openGraph: {
-    title: ogTitle,
-    description: ogDescription,
-    url: siteUrl,
+    title: "TaalDNA — Ontdek hoe jij écht talen leert",
+    description:
+      "Geen vragenlijst. We meten gedrag in korte oefeningen. Persoonlijk leerprofiel in 9 minuten.",
+    url: "https://taaldna.vercel.app",
     siteName: "TaalDNA",
     images: [
       {
-        url: "/og-image.png",
+        url: "https://taaldna.vercel.app/og-image-landscape.png",
         width: 1200,
         height: 630,
-        alt: "TaalDNA — Jouw plek op de kaart",
+        alt: "TaalDNA — Ontdek hoe jij écht talen leert",
       },
     ],
     locale: "nl_NL",
     type: "website",
   },
+
   twitter: {
     card: "summary_large_image",
-    title: ogTitle,
-    description: ogDescription,
-    images: ["/og-image.png"],
+    title: "TaalDNA — Ontdek hoe jij écht talen leert",
+    description:
+      "Geen vragenlijst. We meten gedrag in korte oefeningen. Persoonlijk leerprofiel in 9 minuten.",
+    images: ["https://taaldna.vercel.app/og-image-landscape.png"],
+  },
+
+  metadataBase: new URL("https://taaldna.vercel.app"),
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
