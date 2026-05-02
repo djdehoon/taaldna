@@ -1,0 +1,56 @@
+## PROJECT: TaalDNA
+
+A Dutch language learning style assessment tool.
+Users complete 4 interactive exercises (not questionnaires).
+We measure behavior, not self-report.
+Result: a 2D profile (Processing Style × Social Style) + honest app recommendations.
+
+## TECH STACK
+- Next.js 14 (App Router)
+- TypeScript
+- Tailwind CSS
+- Framer Motion (animations)
+- Shadcn/ui (components)
+- Supabase (database + email capture)
+- Vercel (deployment)
+
+## DESIGN PRINCIPLES
+- Mobile-first. Every screen must look great on iPhone.
+- Clean, modern, Dutch language throughout.
+- Animations should feel smooth, not flashy.
+- Progress bar always visible during assessment.
+- No clutter. One action per screen.
+
+## THE 4 EXERCISES (core product)
+1. Contextueel Raden — user guesses word from context (measures: analyse vs. intuïtie)
+2. Luister en Schrijf — user hears audio, types what they hear (measures: auditieve verwerking)
+3. 30 Seconden Split-Screen — timed interaction choice (measures: sociaal vs. solo)
+4. Bouw de Zin (Drag & Drop) — user drags words into correct order (measures: systematisch vs. intuïtief)
+
+## 2D PROFILE AXES
+- X-axis: Analytisch ←→ Intuïtief
+- Y-axis: Solo ←→ Sociaal
+
+## APP RECOMMENDATIONS (honest, no marketing)
+- Duolingo: goed voor intuïtieve, sociale leerders
+- Anki: goed voor analytische, solo leerders
+- Pimsleur: goed voor auditieve leerders
+- Babbel: goed voor analytische, gestructureerde leerders
+- italki: goed voor sociale leerders die echte gesprekken willen
+
+## ROUTING
+/ → Landing page
+/start → Onboarding
+/assessment → 4 oefeningen in volgorde
+/resultaat → 2D profiel reveal + score
+/aanbevelingen → App aanbevelingen op basis van profiel
+/vergelijk/taaldna → TaalDNA vs. andere leerstijl-tools
+/vergelijk/polycards → PolyCards vs. andere flashcard-apps
+/bedankt → Email capture + bedankpagina
+
+## CODE STYLE
+- Always use TypeScript
+- Component-based architecture
+- Keep components small and focused
+- Use Framer Motion for page transitions
+- Show plan first, then execute

@@ -1,101 +1,83 @@
-import Image from "next/image";
+import Link from "next/link";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+
+const steps = [
+  {
+    n: 1,
+    title: "Start & korte uitleg",
+    body: "Je ziet wat TaalDNA doet — zonder account, in een paar minuten klaar om te beginnen.",
+  },
+  {
+    n: 2,
+    title: "Vier interactieve oefeningen",
+    body: "Geen vragenlijst: we kijken naar wat je doet. Ongeveer 9 minuten, met duidelijke voortgang.",
+  },
+  {
+    n: 3,
+    title: "Jouw profiel & app-tips",
+    body: "Een 2D-profiel (hoe je denkt × hoe je graag leert) en eerlijke app-aanbevelingen op basis van jouw stijl.",
+  },
+] as const;
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className="flex min-h-screen flex-col bg-background px-6 py-14 sm:px-8 sm:py-20">
+      <main className="mx-auto flex w-full max-w-xl flex-1 flex-col gap-12">
+        <header className="flex flex-col gap-6 text-center sm:text-left">
+          <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+            TaalDNA
+          </p>
+          <h1 className="text-balance font-sans text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+            Ontdek hoe jij talen leert
+          </h1>
+          <p className="text-balance font-sans text-lg text-muted-foreground sm:text-xl">
+            Geen lange vragenlijst — we meten gedrag in korte oefeningen. Je krijgt een helder
+            profiel en eerlijke tips, ook voor Nederlands.
+          </p>
+          <div className="flex justify-center sm:justify-start">
+            <Link
+              href="/start"
+              className={cn(
+                buttonVariants({ size: "lg" }),
+                "no-underline decoration-transparent"
+              )}
+            >
+              Start de test (9 min)
+            </Link>
+          </div>
+        </header>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+        <section aria-labelledby="steps-heading" className="flex flex-col gap-4">
+          <h2
+            id="steps-heading"
+            className="font-sans text-sm font-semibold tracking-tight text-foreground"
           >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
+            Zo werkt het
+          </h2>
+          <ol className="flex flex-col gap-3">
+            {steps.map((step) => (
+              <li
+                key={step.n}
+                className="flex gap-4 rounded-xl border border-border bg-card px-4 py-4 text-left shadow-sm"
+              >
+                <span
+                  className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-semibold text-primary-foreground"
+                  aria-hidden
+                >
+                  {step.n}
+                </span>
+                <div className="flex min-w-0 flex-col gap-1">
+                  <p className="font-sans font-medium text-foreground">{step.title}</p>
+                  <p className="font-sans text-sm leading-relaxed text-muted-foreground">
+                    {step.body}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
     </div>
   );
 }
