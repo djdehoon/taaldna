@@ -5,6 +5,7 @@ import { AverageScoreBars } from "@/components/vergelijk/AverageScoreBars";
 import { ComparisonStarTable } from "@/components/vergelijk/ComparisonStarTable";
 import { VergelijkBackToResultaat } from "@/components/vergelijk/VergelijkBackToResultaat";
 import { VergelijkDarkCard } from "@/components/vergelijk/VergelijkDarkCard";
+import { VergelijkComparisonNavItem } from "@/components/vergelijk/VergelijkComparisonNavItem";
 import { VergelijkPageShell } from "@/components/vergelijk/VergelijkPageShell";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -13,7 +14,7 @@ import {
   polycardsColumnLabels,
   polycardsDisclaimer,
   polycardsExternalUrl,
-  polycardsHighlightScoreColumnIndex,
+  polycardsGratisCtaEnabled,
   polycardsHonestCards,
   polycardsHonestFootnote,
   polycardsPageSubtitle,
@@ -41,18 +42,14 @@ export default function VergelijkPolycardsPage() {
           <h2 id="polycards-table-heading" className="text-lg font-semibold text-zinc-100">
             Sterrenvergelijking
           </h2>
-          <ComparisonStarTable
-            columnLabels={polycardsColumnLabels}
-            rows={polycardsStarRows}
-            highlightColumnIndex={polycardsHighlightScoreColumnIndex}
-          />
+          <ComparisonStarTable columnLabels={polycardsColumnLabels} rows={polycardsStarRows} />
         </section>
 
         <section className="flex flex-col gap-3" aria-labelledby="polycards-bars-heading">
           <h2 id="polycards-bars-heading" className="text-lg font-semibold text-zinc-100">
             Gemiddelde scores
           </h2>
-          <AverageScoreBars items={polycardsAverages} />
+          <AverageScoreBars items={polycardsAverages} highlightFirst={false} />
         </section>
 
         <section className="flex flex-col gap-4" aria-labelledby="polycards-honest-heading">
@@ -119,20 +116,39 @@ export default function VergelijkPolycardsPage() {
 
         <footer className="flex flex-col gap-4 border-t border-zinc-800 pt-8">
           <div className="flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
-            <Link
-              href={polycardsExternalUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={cn(buttonVariants({ size: "lg" }))}
-            >
-              Probeer PolyCards gratis →
-            </Link>
-            <Link
+            {polycardsGratisCtaEnabled ? (
+              <Link
+                href={polycardsExternalUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={cn(buttonVariants({ size: "lg" }), "min-h-11 w-full sm:w-auto")}
+              >
+                Probeer PolyCards gratis →
+              </Link>
+            ) : (
+              <span
+                className={cn(
+                  buttonVariants({ size: "lg" }),
+                  "inline-flex min-h-11 w-full cursor-not-allowed flex-col items-center justify-center gap-1 py-3 text-center opacity-85 sm:w-auto"
+                )}
+                aria-disabled="true"
+              >
+                <span>Probeer PolyCards gratis →</span>
+                <span className="text-xs font-normal leading-tight text-zinc-500">
+                  Binnenkort beschikbaar
+                </span>
+              </span>
+            )}
+            <VergelijkComparisonNavItem
               href="/vergelijk/taaldna"
-              className={cn(buttonVariants({ variant: "outline", size: "lg" }), "border-zinc-600 bg-transparent text-zinc-200 hover:bg-zinc-800/80")}
+              variant="buttonOutline"
+              className={cn(
+                buttonVariants({ variant: "outline", size: "lg" }),
+                "min-h-11 w-full border-zinc-600 bg-transparent text-zinc-200 hover:bg-zinc-800/80 sm:w-auto"
+              )}
             >
               Vergelijk TaalDNA
-            </Link>
+            </VergelijkComparisonNavItem>
           </div>
           <p className="text-xs leading-relaxed text-zinc-500">{polycardsDisclaimer}</p>
         </footer>

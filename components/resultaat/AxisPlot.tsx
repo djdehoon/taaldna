@@ -79,15 +79,15 @@ export function AxisPlot({ x, y, apps }: Props) {
             y={cy}
             textAnchor="middle"
             dominantBaseline="central"
-            fill="#aaaaaa"
+            fill="#3f3f46"
             style={{
               fontFamily:
                 "var(--font-sans), ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif",
-              fontSize: 2.2,
-              fontWeight: 400,
+              fontSize: 2.35,
+              fontWeight: 700,
             }}
           >
-            you
+            jij
           </text>
         </svg>
         <span className={`${axisLabelClass} left-[25%] top-2`}>Sociaal</span>

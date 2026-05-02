@@ -18,8 +18,8 @@ type Row = { criterion: string; scores: number[] };
 type Props = {
   columnLabels: readonly string[];
   rows: Row[];
-  /** Index in scores array (0 = first product column). */
-  highlightColumnIndex: number;
+  /** Index in scores array (0 = first product column). Weglaten = geen kolom uitlichten. */
+  highlightColumnIndex?: number;
 };
 
 export function ComparisonStarTable({ columnLabels, rows, highlightColumnIndex }: Props) {
@@ -43,7 +43,9 @@ export function ComparisonStarTable({ columnLabels, rows, highlightColumnIndex }
                 scope="col"
                 className={cn(
                   "px-3 py-3 text-center text-xs font-semibold text-zinc-300 sm:px-4",
-                  colIdx === highlightColumnIndex && highlightClass
+                  highlightColumnIndex !== undefined &&
+                    colIdx === highlightColumnIndex &&
+                    highlightClass
                 )}
               >
                 {label}
@@ -65,7 +67,9 @@ export function ComparisonStarTable({ columnLabels, rows, highlightColumnIndex }
                   key={`${row.criterion}-${colIdx}`}
                   className={cn(
                     "px-3 py-3 text-center sm:px-4",
-                    colIdx === highlightColumnIndex && highlightClass
+                    highlightColumnIndex !== undefined &&
+                      colIdx === highlightColumnIndex &&
+                      highlightClass
                   )}
                 >
                   <StarCell count={score} />

@@ -46,12 +46,12 @@ export function DimensionSection({ ux, uy }: Props) {
           <span>{DIMENSION_X.labelRight}</span>
         </div>
         {DIMENSION_X.science.map((p, i) => (
-          <p key={i} className="text-sm leading-relaxed text-muted-foreground">
+          <p key={i} className="text-base leading-relaxed text-muted-foreground">
             {p}
           </p>
         ))}
-        <p className="text-xs text-muted-foreground">{DIMENSION_X.citation}</p>
-        <p className="text-sm font-medium text-foreground">{personalizedLineX(ux)}</p>
+        <p className="text-sm text-muted-foreground">{DIMENSION_X.citation}</p>
+        <p className="text-base font-medium text-foreground">{personalizedLineX(ux)}</p>
       </div>
 
       <div className={dimensionCardClass}>
@@ -73,12 +73,12 @@ export function DimensionSection({ ux, uy }: Props) {
           <span>{DIMENSION_Y.labelTop}</span>
         </div>
         {DIMENSION_Y.science.map((p, i) => (
-          <p key={i} className="text-sm leading-relaxed text-muted-foreground">
+          <p key={i} className="text-base leading-relaxed text-muted-foreground">
             {p}
           </p>
         ))}
-        <p className="text-xs text-muted-foreground">{DIMENSION_Y.citation}</p>
-        <p className="text-sm font-medium text-foreground">{personalizedLineY(uy)}</p>
+        <p className="text-sm text-muted-foreground">{DIMENSION_Y.citation}</p>
+        <p className="text-base font-medium text-foreground">{personalizedLineY(uy)}</p>
       </div>
     </section>
   );

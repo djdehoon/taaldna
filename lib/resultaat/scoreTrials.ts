@@ -18,6 +18,17 @@ function responseTimeToScore(ms: number): number {
   return Math.round(100 - u * 200);
 }
 
+/**
+ * Contextueel raden: drie buckets op responstijd (opties zichtbaar → klik).
+ * Snel (< 4 s) → intuïtief (+100), midden (4–8 s) → neutraal (0), langzaam (> 8 s) → analytisch (-100).
+ * Schaal sluit aan bij `responseTimeToScore`-bereik voor de 0.55-gewicht in scoreTrials.
+ */
+function contextueelRadenTimeScore(ms: number): number {
+  if (ms < 4000) return 100;
+  if (ms <= 8000) return 0;
+  return -100;
+}
+
 function clampAxis(n: number): number {
   return Math.min(100, Math.max(-100, n));
 }
@@ -76,7 +87,7 @@ export function scoreTrials(trials: ExerciseTrial[]): { x: number; y: number } {
     (t): t is BouwDeZinTrial => t.exerciseSlug === "bouw-de-zin"
   )!;
 
-  const xRt = responseTimeToScore(ctx.responseTimeMs);
+  const xRt = contextueelRadenTimeScore(ctx.responseTimeMs);
   const xBouw = bouw.correctOrder ? -80 : 80;
   const x = clampAxis(Math.round(0.55 * xRt + 0.45 * xBouw));
 

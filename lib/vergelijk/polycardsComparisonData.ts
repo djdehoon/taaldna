@@ -12,30 +12,46 @@ export const polycardsColumnLabels = [
   "Memrise",
 ] as const;
 
-export const polycardsHighlightScoreColumnIndex = 0;
-
+/**
+ * Sterrenvergelijking: volgorde op relevantie voor taal/flashcard-gebruikers (niet op PolyCards-score).
+ * SRS, leer-doel, Content (kwaliteit & omvang), taal, platform, mobiel, design, prijs, community, retentie, vertrouwen.
+ */
 export const polycardsStarRows: { criterion: string; scores: number[] }[] = [
-  { criterion: "🧠 SRS algoritme (kwaliteit)", scores: [3, 3, 5, 2, 2, 3] },
+  { criterion: "🧠 SRS algoritme (kwaliteit)", scores: [5, 3, 5, 2, 2, 3] },
+  { criterion: "🎯 Focus op taallerenden", scores: [4, 4, 3, 3, 5, 4] },
+  {
+    criterion: "📚 Content (kwaliteit & omvang)",
+    scores: [2, 5, 5, 5, 4, 4],
+  },
+  { criterion: "🌍 Taalondersteuning", scores: [3, 4, 5, 4, 3, 4] },
+  {
+    criterion: "🌐 Platformonafhankelijk",
+    scores: [5, 4, 3, 4, 3, 3],
+  },
+  { criterion: "📱 Mobiele app", scores: [4, 5, 4, 5, 5, 5] },
   { criterion: "🎨 Design & gebruiksgemak", scores: [3, 5, 2, 4, 5, 4] },
-  { criterion: "📱 Mobiele app", scores: [2, 5, 4, 5, 5, 5] },
   { criterion: "🆓 Gratis basisversie", scores: [5, 3, 5, 3, 1, 3] },
-  { criterion: "🔧 Eigen content toevoegen", scores: [4, 1, 5, 4, 1, 3] },
-  { criterion: "🌍 Taalondersteuning", scores: [2, 4, 5, 4, 3, 4] },
   { criterion: "👥 Community & kant-en-klare decks", scores: [1, 5, 5, 5, 2, 4] },
-  { criterion: "🏆 Track record & vertrouwen", scores: [1, 5, 5, 4, 4, 4] },
   { criterion: "🔔 Notificaties & retentie", scores: [2, 5, 3, 3, 4, 4] },
-  { criterion: "👤 Geen account vereist", scores: [4, 2, 5, 2, 1, 2] },
-  { criterion: "🎯 Focus op taallerenden", scores: [5, 4, 3, 3, 5, 4] },
+  { criterion: "🏆 Track record & vertrouwen", scores: [1, 5, 5, 4, 4, 4] },
 ];
 
-export const polycardsAverages: { label: string; value: number }[] = [
-  { label: "PolyCards", value: 2.9 },
-  { label: "Duolingo", value: 3.8 },
-  { label: "Anki", value: 3.8 },
-  { label: "Quizlet", value: 3.5 },
-  { label: "Babbel", value: 3.0 },
-  { label: "Memrise", value: 3.5 },
+/** Gemiddelde sterren per kolom over alle rijen in `polycardsStarRows` (afgerond op 1 decimaal). */
+const polycardsAveragesUnsorted: { label: string; value: number }[] = [
+  { label: "PolyCards", value: 3.2 },
+  { label: "Duolingo", value: 4.4 },
+  { label: "Anki", value: 4.1 },
+  { label: "Quizlet", value: 3.8 },
+  { label: "Babbel", value: 3.5 },
+  { label: "Memrise", value: 3.8 },
 ];
+
+/** Aflopend op gemiddelde; bij gelijke score alfabetisch (nl). */
+export const polycardsAverages: { label: string; value: number }[] = [
+  ...polycardsAveragesUnsorted,
+].sort(
+  (a, b) => b.value - a.value || a.label.localeCompare(b.label, "nl")
+);
 
 export const polycardsHonestCards: { title: string; body: string }[] = [
   {
@@ -61,16 +77,24 @@ export const polycardsHonestFootnote =
 
 export const polycardsUspCards: { title: string; body: string }[] = [
   {
+    title: "🧠 SRS-algoritme",
+    body: "Spaced repetition op basis van meerdere wetenschappelijke theorieën.",
+  },
+  {
+    title: "🎯 Focus op taallerenden",
+    body: "Specifiek ontworpen voor taalverwerving.",
+  },
+  {
+    title: "🌐 Platformonafhankelijk",
+    body: "Werkt in elke browser, geen installatie nodig.",
+  },
+  {
     title: "🆓 Volledig gratis",
     body: "Geen premium muur, geen advertenties.",
   },
   {
     title: "✏️ Eigen decks in elke taal",
     body: "Jij bepaalt wat je leert.",
-  },
-  {
-    title: "🎯 Gebouwd voor serieuze taallerenden",
-    body: "Geen gamification-afleiding.",
   },
 ];
 
@@ -114,3 +138,6 @@ export const polycardsDisclaimer =
   "PolyCards is gemaakt door hetzelfde team als TaalDNA.";
 
 export const polycardsExternalUrl = "https://polycards-next.vercel.app";
+
+/** Zet op true wanneer de externe “Probeer gratis”-link weer actief mag. */
+export const polycardsGratisCtaEnabled = false;

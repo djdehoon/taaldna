@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { VergelijkComparisonNavItem } from "@/components/vergelijk/VergelijkComparisonNavItem";
 import { SiteKickerLink } from "@/components/layout/SiteKickerLink";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -23,7 +24,7 @@ const steps = [
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen flex-col bg-background px-6 pb-14 sm:px-8 sm:pb-20">
+    <div className="flex min-h-screen flex-col bg-background px-4 pb-14 sm:px-8 sm:pb-20">
       <main className="mx-auto flex w-full max-w-xl flex-1 flex-col gap-12 pt-10 sm:pt-14">
         <div>
           <SiteKickerLink />
@@ -43,7 +44,7 @@ export default function Home() {
                 href="/start"
                 className={cn(
                   buttonVariants({ size: "lg" }),
-                  "rounded-full px-8 no-underline decoration-transparent"
+                  "min-h-11 rounded-full px-8 no-underline decoration-transparent"
                 )}
               >
                 Start de test (9 min)
@@ -73,7 +74,7 @@ export default function Home() {
                 </span>
                 <div className="flex min-w-0 flex-col gap-1">
                   <p className="font-sans font-semibold text-foreground">{step.title}</p>
-                  <p className="font-sans text-sm leading-relaxed text-muted-foreground">
+                  <p className="font-sans text-base leading-relaxed text-muted-foreground">
                     {step.body}
                   </p>
                 </div>
@@ -87,18 +88,12 @@ export default function Home() {
             Vergelijken
           </p>
           <div className="mt-3 flex flex-col gap-2 text-sm text-muted-foreground sm:flex-row sm:gap-6">
-            <Link
-              href="/vergelijk/taaldna"
-              className="underline-offset-4 hover:text-foreground hover:underline"
-            >
+            <VergelijkComparisonNavItem href="/vergelijk/taaldna" variant="footer">
               TaalDNA vs. andere tools
-            </Link>
-            <Link
-              href="/vergelijk/polycards"
-              className="underline-offset-4 hover:text-foreground hover:underline"
-            >
+            </VergelijkComparisonNavItem>
+            <VergelijkComparisonNavItem href="/vergelijk/polycards" variant="footer">
               PolyCards vs. flashcard-apps
-            </Link>
+            </VergelijkComparisonNavItem>
           </div>
         </footer>
       </main>

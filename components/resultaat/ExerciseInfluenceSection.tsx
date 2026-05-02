@@ -32,7 +32,7 @@ export function ExerciseInfluenceSection() {
       >
         Hoe de oefeningen jouw profiel bepalen
       </h2>
-      <p className="text-sm text-muted-foreground">
+      <p className="text-base text-muted-foreground">
         Elke oefening levert signalen voor één of beide assen van je 2D-profiel.
       </p>
       <ul className="flex flex-col gap-3">
@@ -45,7 +45,7 @@ export function ExerciseInfluenceSection() {
             <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
               {row.axis}
             </p>
-            <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{row.detail}</p>
+            <p className="mt-1 text-base leading-relaxed text-muted-foreground">{row.detail}</p>
           </li>
         ))}
       </ul>

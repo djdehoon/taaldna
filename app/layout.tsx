@@ -41,7 +41,7 @@ export default function RootLayout({
       <body
         className={cn(
           inter.className,
-          "min-h-screen bg-background font-sans text-foreground antialiased"
+          "min-h-screen overflow-x-hidden bg-background font-sans text-foreground antialiased"
         )}
       >
         <PageTransition>{children}</PageTransition>

@@ -41,29 +41,13 @@ export type BouwDeZinContent = {
 
 export const CONTEXTUEEL_RADEN: ContextueelContent = {
   slug: "contextueel-raden",
-  before: "Plaats de marker op positie ",
-  after: " en bevestig je keuze.",
+  before: "De leraar schrijft een ",
+  after: " op het bord.",
   options: [
-    {
-      id: "a",
-      value: "1",
-      label: "Direct aan het begin van het leerpad",
-    },
-    {
-      id: "b",
-      value: "2",
-      label: "Vroeg, net na de eerste stappen",
-    },
-    {
-      id: "c",
-      value: "3",
-      label: "Rond het midden van je traject",
-    },
-    {
-      id: "d",
-      value: "4",
-      label: "Dicht bij het einddoel",
-    },
+    { id: "a", value: "1", label: "woord" },
+    { id: "b", value: "2", label: "vliegtuig" },
+    { id: "c", value: "3", label: "appel" },
+    { id: "d", value: "4", label: "oceaan" },
   ],
   correctOptionId: "a",
 };

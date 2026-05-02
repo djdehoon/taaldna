@@ -18,8 +18,8 @@ const BouwDeZin = dynamic(
   {
     ssr: false,
     loading: () => (
-      <div className="flex flex-1 flex-col items-center justify-center px-6 py-12 text-muted-foreground sm:px-8">
-        <p className="text-sm">Laatste oefening laden…</p>
+      <div className="flex flex-1 flex-col items-center justify-center px-4 py-12 text-muted-foreground sm:px-8">
+        <p className="text-base">Laatste oefening laden…</p>
       </div>
     ),
   }
@@ -62,7 +62,7 @@ export function AssessmentFlow() {
 
   return (
     <div className="flex min-h-screen flex-col bg-background">
-      <div className="px-6 pt-10 sm:px-8 sm:pt-12">
+      <div className="px-4 pt-10 sm:px-8 sm:pt-12">
         <div className="mx-auto w-full max-w-xl">
           <SiteKickerLink />
         </div>

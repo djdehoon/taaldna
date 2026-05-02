@@ -15,30 +15,55 @@ export const taaldnaColumnLabels = [
 /** Eerste kolom (index 0) = eigen product in de score-matrix. */
 export const taaldnaHighlightScoreColumnIndex = 0;
 
+/**
+ * Sterren: volgorde op relevantie (methode, differentiatoren, vertrouwen, UX, toegang, features).
+ * TaalDNA-kolom bewust kritischer dan eerder — nog steeds sterk op unieke punten, minder “alles vijf”.
+ */
 export const taaldnaStarRows: { criterion: string; scores: number[] }[] = [
-  { criterion: "🎯 Taal-specificiteit", scores: [4, 3, 5, 4, 4, 4] },
   { criterion: "🔬 Wetenschappelijke basis", scores: [3, 2, 3, 2, 4, 2] },
-  { criterion: "🎮 Interactieve oefeningen", scores: [5, 1, 1, 1, 1, 1] },
-  { criterion: "🎨 Design kwaliteit", scores: [4, 5, 2, 2, 3, 2] },
-  { criterion: "📱 Mobiel-vriendelijk", scores: [4, 5, 2, 2, 3, 2] },
-  { criterion: "🔗 Deelbaar resultaat", scores: [4, 2, 1, 1, 1, 1] },
-  { criterion: "📲 App-aanbevelingen", scores: [4, 2, 1, 2, 2, 1] },
-  { criterion: "🤝 Onafhankelijkheid", scores: [4, 1, 5, 2, 2, 5] },
-  { criterion: "🆓 Gratis + geen account", scores: [5, 3, 5, 4, 3, 5] },
-  { criterion: "📐 2D-profiel (twee assen)", scores: [5, 1, 2, 1, 1, 1] },
-  { criterion: "⏱️ Snelheid (< 10 min)", scores: [5, 4, 3, 3, 3, 4] },
+  { criterion: "🎯 Taal-specificiteit", scores: [3, 3, 5, 4, 4, 4] },
+  { criterion: "🎮 Interactieve oefeningen", scores: [4, 1, 1, 1, 1, 1] },
+  { criterion: "📐 2D-profiel (twee assen)", scores: [4, 1, 2, 1, 1, 1] },
   { criterion: "🏆 Track record / autoriteit", scores: [1, 5, 4, 5, 5, 3] },
   { criterion: "👥 Gebruikersbase", scores: [1, 5, 3, 4, 5, 2] },
+  { criterion: "⏱️ Snelheid (< 10 min)", scores: [4, 4, 3, 3, 3, 4] },
+  { criterion: "🎨 Design kwaliteit", scores: [3, 5, 2, 2, 3, 2] },
+  { criterion: "📱 Mobiel-vriendelijk", scores: [3, 5, 2, 2, 3, 2] },
+  { criterion: "🆓 Gratis + geen account", scores: [4, 3, 5, 4, 3, 5] },
+  { criterion: "🔗 Deelbaar resultaat", scores: [3, 2, 1, 1, 1, 1] },
+  { criterion: "📲 App-aanbevelingen", scores: [3, 2, 1, 2, 2, 1] },
+  { criterion: "🤝 Onafhankelijkheid", scores: [3, 1, 5, 2, 2, 5] },
 ];
 
+function roundToOneDecimal(n: number): number {
+  return Math.round(n * 10) / 10;
+}
+
+/** Gemiddelde sterren per kolom over alle rijen in `taaldnaStarRows` (afgerond op 1 decimaal). */
+const taaldnaAveragesUnsorted: { label: string; value: number }[] =
+  taaldnaColumnLabels.map((label, colIndex) => {
+    const sum = taaldnaStarRows.reduce(
+      (acc, row) => acc + row.scores[colIndex],
+      0
+    );
+    return {
+      label,
+      value: roundToOneDecimal(sum / taaldnaStarRows.length),
+    };
+  });
+
+/**
+ * Aflopend op gemiddelde; bij gelijke score eerst TaalDNA (highlight op eerste balk), daarna nl-locale op label.
+ */
 export const taaldnaAverages: { label: string; value: number }[] = [
-  { label: "TaalDNA", value: 3.8 },
-  { label: "EF", value: 3.0 },
-  { label: "J-KAV", value: 2.8 },
-  { label: "Benny Lewis", value: 2.5 },
-  { label: "LingQ", value: 2.9 },
-  { label: "Enux VAK", value: 2.5 },
-];
+  ...taaldnaAveragesUnsorted,
+].sort((a, b) => {
+  const dv = b.value - a.value;
+  if (dv !== 0) return dv;
+  if (a.label === "TaalDNA") return -1;
+  if (b.label === "TaalDNA") return 1;
+  return a.label.localeCompare(b.label, "nl");
+});
 
 export const taaldnaHonestCards: { title: string; body: string }[] = [
   {

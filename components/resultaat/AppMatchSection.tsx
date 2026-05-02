@@ -16,7 +16,7 @@ export function AppMatchSection({ apps }: Props) {
       <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
         AppSignaalruimte
       </p>
-      <p className="text-sm text-muted-foreground">
+      <p className="text-base text-muted-foreground">
         Gesorteerd op overlap met jouw profiel in het vlak (hoger = dichter bij jou op de kaart).
       </p>
       <ul className="flex flex-col gap-3">
@@ -46,7 +46,7 @@ export function AppMatchSection({ apps }: Props) {
                     style={{ width: `${app.matchPercent}%` }}
                   />
                 </div>
-                <p className="text-sm leading-snug text-slate-700">{app.reasonLine}</p>
+                <p className="text-base leading-snug text-slate-700">{app.reasonLine}</p>
               </div>
             </li>
           );

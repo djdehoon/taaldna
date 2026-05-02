@@ -50,7 +50,7 @@ export function ProfileRolesSection({ activeQuadrant }: Props) {
       <h2 id="roles-heading" className="text-lg font-semibold tracking-tight text-foreground">
         Jouw rol
       </h2>
-      <p className="text-sm text-muted-foreground">
+      <p className="text-base text-muted-foreground">
         Vier profielen in het vlak — jouw resultaat is er één van.
       </p>
       <ul className="grid gap-3 sm:grid-cols-2">
@@ -75,7 +75,7 @@ export function ProfileRolesSection({ activeQuadrant }: Props) {
               <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
                 {role.axes}
               </p>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+              <p className="mt-2 text-base leading-relaxed text-muted-foreground">
                 {role.description}
               </p>
               {active ? (

@@ -108,12 +108,12 @@ export function LuisterEnSchrijf({ onComplete }: Props) {
   }, [value, onComplete, canSpeak, locked]);
 
   return (
-    <div className="mx-auto flex w-full max-w-xl flex-1 flex-col gap-6 px-6 pb-12 pt-8 sm:px-8">
+    <div className="mx-auto flex w-full max-w-xl flex-1 flex-col gap-6 px-4 pb-12 pt-8 sm:px-8">
       <div className="space-y-2">
         <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
           Luister en schrijf
         </p>
-        <p className="text-sm text-muted-foreground">
+        <p className="text-base text-muted-foreground">
           {LUISTER_EN_SCHRIJF.hintNl}
         </p>
         {canSpeak && (
@@ -129,14 +129,14 @@ export function LuisterEnSchrijf({ onComplete }: Props) {
           type="button"
           variant="secondary"
           size="lg"
-          className="w-full sm:w-auto"
+          className="min-h-11 w-full sm:w-auto"
           disabled={locked}
           onClick={speak}
         >
           {canSpeak ? "Luister" : "Toon tekst (geen audio)"}
         </Button>
         {!canSpeak && (
-          <p className="rounded-lg border border-border bg-muted/40 px-3 py-2 text-sm text-muted-foreground">
+          <p className="rounded-lg border border-border bg-muted/40 px-3 py-2 text-base text-muted-foreground">
             Je browser ondersteunt geen voorleesfunctie. Dit is de zin:{" "}
             <span className="font-medium text-foreground">
               {LUISTER_EN_SCHRIJF.phrase}
@@ -163,7 +163,7 @@ export function LuisterEnSchrijf({ onComplete }: Props) {
       <Button
         type="button"
         size="lg"
-        className="w-full"
+        className="min-h-11 w-full"
         disabled={locked || !hasPlayed || !value.trim()}
         onClick={submit}
       >

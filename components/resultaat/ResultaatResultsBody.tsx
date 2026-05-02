@@ -19,6 +19,8 @@ import { ExerciseInfluenceSection } from "@/components/resultaat/ExerciseInfluen
 import { ProfileRolesSection } from "@/components/resultaat/ProfileRolesSection";
 import { AppMatchSection } from "@/components/resultaat/AppMatchSection";
 import { VergelijkToolsSection } from "@/components/resultaat/VergelijkToolsSection";
+import { EmailCaptureSection } from "@/components/resultaat/EmailCaptureSection";
+import { SEND_REPORT_ENABLED } from "@/lib/send-report-enabled";
 
 type Props = {
   payload: AssessmentSessionPayload;
@@ -34,8 +36,8 @@ export function ResultaatResultsBody({ payload }: Props) {
   const rankedApps = appsWithMatches(ux, uy);
 
   return (
-    <div className="min-h-screen bg-background font-sans antialiased text-foreground">
-      <div className="mx-auto flex w-full max-w-2xl flex-col gap-10 px-6 py-10 sm:px-8 sm:py-14">
+    <div className="min-h-screen overflow-x-hidden bg-background font-sans antialiased text-foreground">
+      <div className="mx-auto flex w-full max-w-2xl flex-col gap-10 px-4 py-10 sm:px-8 sm:py-14">
         <div className="max-w-xl">
           <SiteKickerLink className="mb-0" />
         </div>
@@ -49,6 +51,7 @@ export function ResultaatResultsBody({ payload }: Props) {
         </motion.h1>
 
         <motion.div
+          className="mx-auto w-full min-w-0"
           initial={reduceMotion ? false : { opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
@@ -100,6 +103,38 @@ export function ResultaatResultsBody({ payload }: Props) {
         <motion.div
           initial={reduceMotion ? false : { opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.19 }}
+        >
+          {SEND_REPORT_ENABLED ? (
+            <EmailCaptureSection
+              profileName={profileTitle}
+              xRaw={x}
+              yRaw={y}
+              quadrant={quadrant}
+              profileDescription={description}
+              topApps={rankedApps}
+            />
+          ) : (
+            <section
+              className="rounded-xl border border-border bg-muted/30 px-4 py-5 sm:px-5"
+              aria-labelledby="email-capture-disabled-heading"
+            >
+              <h2
+                id="email-capture-disabled-heading"
+                className="text-lg font-semibold tracking-tight text-foreground"
+              >
+                Profiel per mail
+              </h2>
+              <p className="mt-2 text-base leading-relaxed text-muted-foreground">
+                Deze optie is binnenkort beschikbaar! Een volledig rapport via PDF.
+              </p>
+            </section>
+          )}
+        </motion.div>
+
+        <motion.div
+          initial={reduceMotion ? false : { opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.2 }}
         >
           <VergelijkToolsSection />
@@ -108,7 +143,10 @@ export function ResultaatResultsBody({ payload }: Props) {
         <div className="flex justify-center pt-2">
           <Link
             href="/start"
-            className={cn(buttonVariants({ size: "lg" }), "w-full sm:w-auto")}
+            className={cn(
+              buttonVariants({ size: "lg" }),
+              "min-h-11 w-full sm:w-auto"
+            )}
           >
             Opnieuw doen →
           </Link>

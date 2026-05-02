@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useCallback, useEffect, useState } from "react";
+import { VergelijkComparisonNavItem } from "@/components/vergelijk/VergelijkComparisonNavItem";
 import { SiteKickerLink } from "@/components/layout/SiteKickerLink";
 import { buttonVariants } from "@/components/ui/button";
 import { parseSessionPayload } from "@/lib/resultaat/scoreTrials";
@@ -56,7 +57,7 @@ export default function StartPage() {
   }, []);
 
   return (
-    <div className="flex min-h-screen flex-col bg-background px-6 sm:px-8">
+    <div className="flex min-h-screen flex-col bg-background px-4 sm:px-8">
       <div className="mx-auto w-full max-w-xl pt-10 sm:pt-14">
         <SiteKickerLink />
       </div>
@@ -80,8 +81,8 @@ export default function StartPage() {
               <Link
                 href="/resultaat"
                 className={cn(
-                  buttonVariants({ variant: "outline", size: "sm" }),
-                  "w-full no-underline sm:w-auto"
+                  buttonVariants({ variant: "outline", size: "default" }),
+                  "min-h-11 w-full no-underline sm:w-auto"
                 )}
               >
                 Bekijk mijn profiel →
@@ -147,7 +148,7 @@ export default function StartPage() {
         >
           <Link
             href="/assessment"
-            className={cn(buttonVariants({ size: "lg" }), "w-full sm:w-auto")}
+            className={cn(buttonVariants({ size: "lg" }), "min-h-11 w-full sm:w-auto")}
           >
             Begin →
           </Link>
@@ -158,18 +159,12 @@ export default function StartPage() {
             Vergelijken
           </p>
           <div className="mt-2 flex flex-col gap-2 text-sm text-muted-foreground sm:flex-row sm:gap-6">
-            <Link
-              href="/vergelijk/taaldna"
-              className="underline-offset-4 hover:text-foreground hover:underline"
-            >
+            <VergelijkComparisonNavItem href="/vergelijk/taaldna" variant="footer">
               TaalDNA vs. andere tools
-            </Link>
-            <Link
-              href="/vergelijk/polycards"
-              className="underline-offset-4 hover:text-foreground hover:underline"
-            >
+            </VergelijkComparisonNavItem>
+            <VergelijkComparisonNavItem href="/vergelijk/polycards" variant="footer">
               PolyCards vs. flashcard-apps
-            </Link>
+            </VergelijkComparisonNavItem>
           </div>
         </footer>
       </main>

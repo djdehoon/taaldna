@@ -5,6 +5,7 @@ import { AverageScoreBars } from "@/components/vergelijk/AverageScoreBars";
 import { ComparisonStarTable } from "@/components/vergelijk/ComparisonStarTable";
 import { VergelijkBackToResultaat } from "@/components/vergelijk/VergelijkBackToResultaat";
 import { VergelijkDarkCard } from "@/components/vergelijk/VergelijkDarkCard";
+import { VergelijkComparisonNavItem } from "@/components/vergelijk/VergelijkComparisonNavItem";
 import { VergelijkPageShell } from "@/components/vergelijk/VergelijkPageShell";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -60,7 +61,7 @@ export default function VergelijkTaalDnaPage() {
               <VergelijkDarkCard key={card.title} title={card.title} body={card.body} />
             ))}
           </div>
-          <p className="text-sm leading-relaxed text-zinc-400">{taaldnaHonestFootnote}</p>
+          <p className="text-base leading-relaxed text-zinc-400">{taaldnaHonestFootnote}</p>
         </section>
 
         <section className="flex flex-col gap-4" aria-labelledby="taaldna-usp-heading">
@@ -75,15 +76,22 @@ export default function VergelijkTaalDnaPage() {
         </section>
 
         <footer className="flex flex-col gap-4 border-t border-zinc-800 pt-8 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
-          <Link href="/start" className={cn(buttonVariants({ size: "lg" }))}>
+          <Link
+            href="/start"
+            className={cn(buttonVariants({ size: "lg" }), "min-h-11 w-full sm:w-auto")}
+          >
             Doe de TaalDNA test →
           </Link>
-          <Link
+          <VergelijkComparisonNavItem
             href="/vergelijk/polycards"
-            className={cn(buttonVariants({ variant: "outline", size: "lg" }), "border-zinc-600 bg-transparent text-zinc-200 hover:bg-zinc-800/80")}
+            variant="buttonOutline"
+            className={cn(
+              buttonVariants({ variant: "outline", size: "lg" }),
+              "min-h-11 w-full border-zinc-600 bg-transparent text-zinc-200 hover:bg-zinc-800/80 sm:w-auto"
+            )}
           >
             Vergelijk PolyCards
-          </Link>
+          </VergelijkComparisonNavItem>
         </footer>
       </div>
     </VergelijkPageShell>

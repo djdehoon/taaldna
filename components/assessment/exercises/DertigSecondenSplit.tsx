@@ -61,7 +61,7 @@ export function DertigSecondenSplit({ onComplete }: Props) {
   };
 
   return (
-    <div className="mx-auto flex w-full max-w-xl flex-1 flex-col gap-6 px-6 pb-12 pt-8 sm:px-8">
+    <div className="mx-auto flex w-full max-w-xl flex-1 flex-col gap-6 px-4 pb-12 pt-8 sm:px-8">
       <div className="space-y-2">
         <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
           30 seconden
@@ -86,13 +86,13 @@ export function DertigSecondenSplit({ onComplete }: Props) {
           type="button"
           variant="outline"
           disabled={uiLocked}
-          className="h-auto min-h-[11rem] flex-col items-stretch gap-2 whitespace-normal px-4 py-5 text-left sm:min-h-[12rem]"
+          className="h-auto min-h-[11rem] w-full flex-col items-stretch gap-2 whitespace-normal px-4 py-5 text-left sm:min-h-[12rem]"
           onClick={() => pick(DERTIG_SECONDEN_SPLIT.left.id)}
         >
           <span className="text-base font-semibold">
             {DERTIG_SECONDEN_SPLIT.left.title}
           </span>
-          <span className="text-sm font-normal leading-snug text-muted-foreground">
+          <span className="text-base font-normal leading-snug text-muted-foreground">
             {DERTIG_SECONDEN_SPLIT.left.body}
           </span>
         </Button>
@@ -100,13 +100,13 @@ export function DertigSecondenSplit({ onComplete }: Props) {
           type="button"
           variant="outline"
           disabled={uiLocked}
-          className="h-auto min-h-[11rem] flex-col items-stretch gap-2 whitespace-normal px-4 py-5 text-left sm:min-h-[12rem]"
+          className="h-auto min-h-[11rem] w-full flex-col items-stretch gap-2 whitespace-normal px-4 py-5 text-left sm:min-h-[12rem]"
           onClick={() => pick(DERTIG_SECONDEN_SPLIT.right.id)}
         >
           <span className="text-base font-semibold">
             {DERTIG_SECONDEN_SPLIT.right.title}
           </span>
-          <span className="text-sm font-normal leading-snug text-muted-foreground">
+          <span className="text-base font-normal leading-snug text-muted-foreground">
             {DERTIG_SECONDEN_SPLIT.right.body}
           </span>
         </Button>

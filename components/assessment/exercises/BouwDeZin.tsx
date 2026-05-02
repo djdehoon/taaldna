@@ -51,10 +51,10 @@ function SortableRow({
   };
 
   return (
-    <div ref={setNodeRef} style={style} className="touch-none">
+    <div ref={setNodeRef} style={style}>
       <button
         type="button"
-        className={`flex w-full items-center gap-3 rounded-xl border border-border bg-card px-4 py-4 text-left text-base shadow-sm outline-none transition hover:bg-muted/40 focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/50 active:cursor-grabbing ${
+        className={`flex min-h-11 w-full touch-manipulation items-center gap-3 rounded-xl border border-border bg-card px-4 py-4 text-left text-base shadow-sm outline-none transition hover:bg-muted/40 focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/50 active:cursor-grabbing ${
           isDragging ? "z-10 scale-[1.02] opacity-90 shadow-md" : ""
         }`}
         {...attributes}
@@ -127,7 +127,7 @@ export function BouwDeZin({ onComplete }: Props) {
   }, [items, onComplete, locked]);
 
   return (
-    <div className="mx-auto flex w-full max-w-xl flex-1 flex-col gap-6 px-6 pb-12 pt-8 sm:px-8">
+    <div className="mx-auto flex w-full max-w-xl flex-1 flex-col gap-6 px-4 pb-12 pt-8 sm:px-8">
       <div className="space-y-2">
         <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
           Bouw de zin
@@ -159,7 +159,7 @@ export function BouwDeZin({ onComplete }: Props) {
       <Button
         type="button"
         size="lg"
-        className="w-full"
+        className="min-h-11 w-full"
         disabled={locked}
         onClick={confirm}
       >
