@@ -21,6 +21,18 @@ const rows = [
     axis: "Analytisch ↔ Intuïtief",
     detail: "Volgorde en structuur versterken het beeld op de horizontale as.",
   },
+  {
+    exercise: "Woordwolk",
+    axis: "Analytisch ↔ Intuïtief",
+    detail:
+      "Je eerste impuls bij onbekende woorden — patroon, klank, gokken of systematisch — weegt mee op de horizontale as.",
+  },
+  {
+    exercise: "Leerscenario",
+    axis: "Solo ↔ Sociaal",
+    detail:
+      "Hoe je een kort oefenmoment invult (app, mens, video, AI) geeft een gedragssignaal op de verticale as.",
+  },
 ] as const;
 
 export function ExerciseInfluenceSection() {

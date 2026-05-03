@@ -1,9 +1,11 @@
-/** One of the four interactive assessment exercises. */
+/** Interactive assessment exercise identifiers. */
 export type ExerciseSlug =
   | "contextueel-raden"
   | "luister-en-schrijf"
   | "dertig-seconden-split"
-  | "bouw-de-zin";
+  | "bouw-de-zin"
+  | "woordwolk"
+  | "leerscenario";
 
 export type ProcessingAxisHint = "analytisch" | "intuitief" | "auditief";
 export type SocialAxisHint = "solo" | "sociaal";
@@ -13,7 +15,7 @@ export interface Exercise {
   slug: ExerciseSlug;
   titleNl: string;
   descriptionNl: string;
-  order: 1 | 2 | 3 | 4;
+  order: 1 | 2 | 3 | 4 | 5 | 6;
   /** Optional hints for analytics / scoring (behaviour, not self-report). */
   measuresProcessing?: ProcessingAxisHint;
   measuresSocial?: SocialAxisHint;
@@ -101,11 +103,27 @@ export type BouwDeZinTrial = ExerciseTrialBase & {
   correctOrder: boolean;
 };
 
+export type AssessmentChoiceId = "a" | "b" | "c" | "d";
+
+export type WoordwolkTrial = ExerciseTrialBase & {
+  exerciseSlug: "woordwolk";
+  choiceId: AssessmentChoiceId;
+  choiceLabel: string;
+};
+
+export type LeerscenarioTrial = ExerciseTrialBase & {
+  exerciseSlug: "leerscenario";
+  choiceId: AssessmentChoiceId;
+  choiceLabel: string;
+};
+
 export type ExerciseTrial =
   | ContextueelRadenTrial
   | LuisterEnSchrijfTrial
   | DertigSecondenSplitTrial
-  | BouwDeZinTrial;
+  | BouwDeZinTrial
+  | WoordwolkTrial
+  | LeerscenarioTrial;
 
 /** Payload stored in localStorage under TAALDNA_ASSESSMENT_STORAGE_KEY. */
 export interface AssessmentSessionPayload {

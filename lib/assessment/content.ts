@@ -39,6 +39,25 @@ export type BouwDeZinContent = {
   correctTokens: string[];
 };
 
+export type WoordwolkWordStyle = {
+  text: string;
+  /** Position + typography (fixed cloud layout) */
+  className: string;
+};
+
+export type WoordwolkContent = {
+  slug: ExerciseSlug;
+  prompt: string;
+  words: WoordwolkWordStyle[];
+  options: { id: "a" | "b" | "c" | "d"; label: string; value: string }[];
+};
+
+export type LeerscenarioContent = {
+  slug: ExerciseSlug;
+  prompt: string;
+  options: { id: "a" | "b" | "c" | "d"; label: string; emoji: string; value: string }[];
+};
+
 export const CONTEXTUEEL_RADEN: ContextueelContent = {
   slug: "contextueel-raden",
   before: "De leraar schrijft een ",
@@ -80,6 +99,79 @@ export const DERTIG_SECONDEN_SPLIT: SplitContent = {
 export const BOUW_DE_ZIN: BouwDeZinContent = {
   slug: "bouw-de-zin",
   correctTokens: ["Zet", "de", "onderdelen", "in", "deze", "volgorde", "."],
+};
+
+export const WOORDWOLK: WoordwolkContent = {
+  slug: "woordwolk",
+  prompt: "Je ziet deze woorden voor het eerst. Wat doe je als eerste?",
+  words: [
+    { text: "kalo", className: "left-[6%] top-[8%] text-lg font-semibold" },
+    { text: "miren", className: "right-[10%] top-[6%] text-sm opacity-90" },
+    { text: "sova", className: "left-[22%] top-[28%] text-2xl font-bold" },
+    { text: "telu", className: "right-[18%] top-[22%] text-base" },
+    { text: "brani", className: "left-[8%] top-[48%] text-xl" },
+    { text: "vespo", className: "right-[6%] top-[42%] text-lg font-medium" },
+    { text: "lidor", className: "left-[38%] top-[12%] text-sm" },
+    { text: "canto", className: "right-[32%] top-[52%] text-2xl font-semibold" },
+    { text: "felu", className: "left-[48%] top-[38%] text-base opacity-95" },
+    { text: "marka", className: "right-[40%] top-[14%] text-xl font-bold" },
+    { text: "soven", className: "left-[14%] bottom-[18%] text-lg" },
+    { text: "tiral", className: "right-[12%] bottom-[12%] text-sm font-semibold" },
+  ],
+  options: [
+    {
+      id: "a",
+      value: "A",
+      label: "Ik zoek naar patronen en overeenkomsten tussen de woorden",
+    },
+    {
+      id: "b",
+      value: "B",
+      label: "Ik klik op de woorden die me het meest aanspreken qua klank",
+    },
+    {
+      id: "c",
+      value: "C",
+      label: "Ik probeer de betekenis te raden op basis van hoe ze klinken",
+    },
+    {
+      id: "d",
+      value: "D",
+      label: "Ik schrijf ze op en probeer ze systematisch te onthouden",
+    },
+  ],
+};
+
+export const LEERSCENARIO: LeerscenarioContent = {
+  slug: "leerscenario",
+  prompt:
+    "Je hebt vanavond 20 minuten om je taal te oefenen. Wat doe je het liefst?",
+  options: [
+    {
+      id: "a",
+      value: "A",
+      label: "Een app gebruiken — lekker op mijn eigen tempo",
+      emoji: "📱",
+    },
+    {
+      id: "b",
+      value: "B",
+      label: "Een taalpartner bellen of appen",
+      emoji: "📞",
+    },
+    {
+      id: "c",
+      value: "C",
+      label: "Een les of video kijken en aantekeningen maken",
+      emoji: "🎬",
+    },
+    {
+      id: "d",
+      value: "D",
+      label: "Een gesprek oefenen via een AI of chatbot",
+      emoji: "🤖",
+    },
+  ],
 };
 
 /** Fisher–Yates shuffle (copy). */

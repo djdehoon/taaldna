@@ -10,6 +10,8 @@ import { SiteKickerLink } from "@/components/layout/SiteKickerLink";
 import { ContextueelRaden } from "@/components/assessment/exercises/ContextueelRaden";
 import { LuisterEnSchrijf } from "@/components/assessment/exercises/LuisterEnSchrijf";
 import { DertigSecondenSplit } from "@/components/assessment/exercises/DertigSecondenSplit";
+import { Woordwolk } from "@/components/assessment/exercises/Woordwolk";
+import { Leerscenario } from "@/components/assessment/exercises/Leerscenario";
 
 /** dnd-kit + SSR op Vercel geeft nog weleens 500; alleen client-side laden. */
 const BouwDeZin = dynamic(
@@ -19,13 +21,13 @@ const BouwDeZin = dynamic(
     ssr: false,
     loading: () => (
       <div className="flex flex-1 flex-col items-center justify-center px-4 py-12 text-muted-foreground sm:px-8">
-        <p className="text-base">Laatste oefening laden…</p>
+        <p className="text-base">Oefening laden…</p>
       </div>
     ),
   }
 );
 
-const TOTAL = 4;
+const TOTAL = 6;
 
 export function AssessmentFlow() {
   const [step, setStep] = useState(0);
@@ -73,6 +75,8 @@ export function AssessmentFlow() {
         {step === 1 && <LuisterEnSchrijf onComplete={handleComplete} />}
         {step === 2 && <DertigSecondenSplit onComplete={handleComplete} />}
         {step === 3 && <BouwDeZin onComplete={handleComplete} />}
+        {step === 4 && <Woordwolk onComplete={handleComplete} />}
+        {step === 5 && <Leerscenario onComplete={handleComplete} />}
       </div>
     </div>
   );

@@ -1,11 +1,14 @@
 import type {
+  AssessmentChoiceId,
   AssessmentSessionPayload,
   BouwDeZinTrial,
   ContextueelRadenTrial,
   DertigSecondenSplitTrial,
   ExerciseTrial,
   ExerciseSlug,
+  LeerscenarioTrial,
   LuisterEnSchrijfTrial,
+  WoordwolkTrial,
 } from "@/types";
 import { PROFILE_ROLE_META } from "@/lib/resultaat/profileRoleMeta";
 
@@ -39,7 +42,31 @@ const REQUIRED_SLUGS: ExerciseSlug[] = [
   "luister-en-schrijf",
   "dertig-seconden-split",
   "bouw-de-zin",
+  "woordwolk",
+  "leerscenario",
 ];
+
+/** O5: spec −2…+2 on processing → delta on x-scale (−30…+30). */
+function woordwolkChoiceDelta(choiceId: AssessmentChoiceId): number {
+  const m: Record<AssessmentChoiceId, number> = {
+    a: -30,
+    b: 30,
+    c: 15,
+    d: -15,
+  };
+  return m[choiceId];
+}
+
+/** O6: spec −2…+2 on interaction → delta on y-scale (−30…+30). */
+function leerscenarioChoiceDelta(choiceId: AssessmentChoiceId): number {
+  const m: Record<AssessmentChoiceId, number> = {
+    a: -30,
+    b: 30,
+    c: -15,
+    d: 15,
+  };
+  return m[choiceId];
+}
 
 export type ResultaatQuadrant =
   | "analytisch-solo"
@@ -63,7 +90,7 @@ export function parseSessionPayload(raw: string | null): AssessmentSessionPayloa
     for (const s of REQUIRED_SLUGS) {
       if (!slugs.has(s)) return null;
     }
-    if (data.trials.length !== 4) return null;
+    if (data.trials.length !== 6) return null;
     return data;
   } catch {
     return null;
@@ -71,8 +98,8 @@ export function parseSessionPayload(raw: string | null): AssessmentSessionPayloa
 }
 
 /**
- * X: Analytisch (-) … Intuïtief (+). Combines Contextueel RT + Bouw correctheid.
- * Y: Solo (-) … Sociaal (+). Combines Split keuze + Luister RT.
+ * X: Analytisch (-) … Intuïtief (+). Contextueel RT + Bouw correctheid + woordwolk-keuze.
+ * Y: Solo (-) … Sociaal (+). Split keuze + Luister RT + leerscenario-keuze.
  */
 export function scoreTrials(trials: ExerciseTrial[]): { x: number; y: number } {
   const ctx = trials.find(
@@ -100,7 +127,20 @@ export function scoreTrials(trials: ExerciseTrial[]): { x: number; y: number } {
   const yListen = responseTimeToScore(luister.responseTimeMs);
   const y = clampAxis(Math.round(0.6 * ySplit + 0.4 * yListen));
 
-  return { x, y };
+  const woordwolk = trials.find(
+    (t): t is WoordwolkTrial => t.exerciseSlug === "woordwolk"
+  )!;
+  const leerscenario = trials.find(
+    (t): t is LeerscenarioTrial => t.exerciseSlug === "leerscenario"
+  )!;
+
+  const dx = woordwolkChoiceDelta(woordwolk.choiceId);
+  const dy = leerscenarioChoiceDelta(leerscenario.choiceId);
+
+  return {
+    x: clampAxis(x + dx),
+    y: clampAxis(y + dy),
+  };
 }
 
 /**
