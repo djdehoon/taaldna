@@ -74,3 +74,34 @@ npm run dev
 
 NEVER start `npm run dev` without first killing existing port processes.
 The dev server must always run on port 3000.
+
+## GIT COMMIT STANDAARD (verplicht, altijd volgen)
+
+Elke commit volgt dit formaat:
+  vX.Y.Z type(scope): Imperatief beschrijving
+
+Regels (Chris Beams):
+- Max 50 tekens in de subject
+- Hoofdletter aan het begin
+- Geen punt aan het einde
+- Gebiedende wijs: "Add" niet "Added"
+- Engels
+
+Types: feat | fix | docs | style | refactor | test | chore | perf
+
+Voorbeelden:
+  v1.3.9 feat(branding): Add page title and version badge
+  v1.4.0 feat(nav): Add back button to /start page
+  v1.4.1 feat(results): Add color score spectrum bar
+  v1.4.2 fix(assessment): Correct slug validation order
+
+NOOIT:
+  - "WIP" naar main pushen
+  - Verleden tijd ("Added feature")
+  - Intenties beschrijven ("Going to add...")
+  - Commits zonder versienummer
+
+Versie ophogen:
+  - Patch (Z): elke Cursor-taak
+  - Minor (Y): feature-groep compleet
+  - Major (X): complete redesign
