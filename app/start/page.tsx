@@ -59,38 +59,15 @@ export default function StartPage() {
   return (
     <div className="flex min-h-screen flex-col bg-background px-4 sm:px-8">
       <div className="mx-auto w-full max-w-xl pt-10 sm:pt-14">
+        <Link
+          href="/"
+          className="mb-4 inline-block text-sm text-muted-foreground underline-offset-4 transition-colors hover:text-foreground hover:underline"
+        >
+          ← Terug
+        </Link>
         <SiteKickerLink />
       </div>
       <main className="mx-auto flex w-full max-w-xl flex-1 flex-col justify-center gap-8 pb-14 sm:pb-16">
-        {showResumeBanner ? (
-          <div
-            className="rounded-xl border border-border bg-muted/40 px-4 py-3 text-sm text-foreground"
-            role="status"
-          >
-            <p className="text-pretty text-muted-foreground">
-              Je hebt al eerder een profiel. Wil je opnieuw beginnen?
-            </p>
-            <div className="mt-3 flex flex-col gap-2 sm:flex-row sm:gap-3">
-              <button
-                type="button"
-                onClick={clearAndRefresh}
-                className={cn(buttonVariants({ size: "sm" }), "w-full sm:w-auto")}
-              >
-                Ja, opnieuw
-              </button>
-              <Link
-                href="/resultaat"
-                className={cn(
-                  buttonVariants({ variant: "outline", size: "default" }),
-                  "min-h-11 w-full no-underline sm:w-auto"
-                )}
-              >
-                Bekijk mijn profiel →
-              </Link>
-            </div>
-          </div>
-        ) : null}
-
         <motion.h1
           className="text-balance text-3xl font-semibold tracking-tight text-foreground sm:text-4xl"
           {...fade}
@@ -154,6 +131,38 @@ export default function StartPage() {
           </Link>
         </motion.div>
 
+        {showResumeBanner ? (
+          <div
+            className="w-full max-w-md rounded-xl border border-border bg-muted/40 px-4 py-3 text-sm text-foreground"
+            role="status"
+          >
+            <p className="text-pretty text-muted-foreground">
+              Je hebt al eerder een profiel. Wil je opnieuw beginnen?
+            </p>
+            <div className="mt-3 flex w-fit max-w-full flex-col gap-2">
+              <Link
+                href="/resultaat"
+                className={cn(
+                  buttonVariants({ variant: "outline", size: "default" }),
+                  "flex min-h-11 w-full items-center justify-center whitespace-nowrap text-sm no-underline sm:text-base"
+                )}
+              >
+                Bekijk mijn profiel
+              </Link>
+              <button
+                type="button"
+                onClick={clearAndRefresh}
+                className={cn(
+                  buttonVariants({ variant: "outline", size: "default" }),
+                  "flex min-h-11 w-full items-center justify-center whitespace-nowrap text-sm sm:text-base"
+                )}
+              >
+                Ja, opnieuw
+              </button>
+            </div>
+          </div>
+        ) : null}
+
         <footer className="border-t border-gray-200 pt-6 text-center sm:text-left">
           <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
             Vergelijken
@@ -161,9 +170,6 @@ export default function StartPage() {
           <div className="mt-2 flex flex-col gap-2 text-sm text-muted-foreground sm:flex-row sm:gap-6">
             <VergelijkComparisonNavItem href="/vergelijk/taaldna" variant="footer">
               TaalDNA vs. andere tools
-            </VergelijkComparisonNavItem>
-            <VergelijkComparisonNavItem href="/vergelijk/polycards" variant="footer">
-              PolyCards vs. flashcard-apps
             </VergelijkComparisonNavItem>
           </div>
         </footer>

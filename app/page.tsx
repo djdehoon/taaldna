@@ -100,9 +100,6 @@ export default function Home() {
             <VergelijkComparisonNavItem href="/vergelijk/taaldna" variant="footer">
               TaalDNA vs. andere tools
             </VergelijkComparisonNavItem>
-            <VergelijkComparisonNavItem href="/vergelijk/polycards" variant="footer">
-              PolyCards vs. flashcard-apps
-            </VergelijkComparisonNavItem>
           </div>
         </footer>
       </main>

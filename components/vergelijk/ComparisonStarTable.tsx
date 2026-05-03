@@ -41,7 +41,7 @@ export function ComparisonStarTable({ columnLabels, rows, highlightColumnIndex }
         );
 
   return (
-    <div className="overflow-x-auto rounded-xl border border-zinc-700/60 bg-[#141428]/80">
+    <div className="scrollbar-vergelijk-subtle overflow-x-auto rounded-xl border border-zinc-700/60 bg-[#141428]/80">
       <table className="w-full min-w-[640px] border-collapse text-left text-sm">
         <thead>
           <tr className="border-b border-zinc-700/80">

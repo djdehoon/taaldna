@@ -5,6 +5,8 @@ import { useCallback, useState } from "react";
 import { useRouter } from "next/navigation";
 import type { AssessmentSessionPayload, ExerciseTrial } from "@/types";
 import { TAALDNA_ASSESSMENT_STORAGE_KEY } from "@/types";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { AssessmentProgress } from "@/components/assessment/AssessmentProgress";
 import { SiteKickerLink } from "@/components/layout/SiteKickerLink";
 import { ContextueelRaden } from "@/components/assessment/exercises/ContextueelRaden";
@@ -62,10 +64,29 @@ export function AssessmentFlow() {
     [router]
   );
 
+  const handleBack = useCallback(() => {
+    if (step <= 0) {
+      router.push("/start");
+      return;
+    }
+    setTrials((prev) => prev.slice(0, -1));
+    setStep((s) => s - 1);
+  }, [router, step]);
+
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <div className="px-4 pt-10 sm:px-8 sm:pt-12">
         <div className="mx-auto w-full max-w-xl">
+          <button
+            type="button"
+            onClick={handleBack}
+            className={cn(
+              buttonVariants({ variant: "ghost", size: "sm" }),
+              "mb-4 -ml-2 h-auto px-2 py-1 text-sm text-muted-foreground underline-offset-4 hover:bg-transparent hover:text-foreground hover:underline"
+            )}
+          >
+            ← Terug
+          </button>
           <SiteKickerLink />
         </div>
       </div>

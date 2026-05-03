@@ -22,9 +22,26 @@ export const DIMENSION_Y = {
   citation: "Vygotsky, L. S. (1978). Mind in Society.",
 } as const;
 
-function pctDominant(share: number): { pct: number; pole: string } {
+/** Share 0 = linkerpool, 1 = rechterpool; pct = dominantie (afstand tot midden). */
+export function pctDominant(share: number): { pct: number; pole: "left" | "right" } {
   const high = Math.round(Math.max(share, 1 - share) * 100);
   return { pct: high, pole: share >= 0.5 ? "right" : "left" };
+}
+
+/** Zelfde headline als DimensionSection, op basis van ruwe as-score (-100..100). */
+export function spectrumHeadlineFromRawScore(
+  rawScore: number,
+  labelLeft: string,
+  labelRight: string,
+  accentLeft: string,
+  accentRight: string
+): { text: string; className: string } {
+  const s = Math.min(100, Math.max(-100, rawScore));
+  const share = (s + 100) / 200;
+  const { pct, pole } = pctDominant(share);
+  const dominantLabel = pole === "right" ? labelRight : labelLeft;
+  const className = pole === "right" ? accentRight : accentLeft;
+  return { text: `${pct}% ${dominantLabel}`, className };
 }
 
 export function dimensionXHeadline(ux: number): { pct: number; dominantLabel: string } {

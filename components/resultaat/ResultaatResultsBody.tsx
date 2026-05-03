@@ -22,6 +22,8 @@ import { AppMatchSection } from "@/components/resultaat/AppMatchSection";
 import { VergelijkToolsSection } from "@/components/resultaat/VergelijkToolsSection";
 import { EmailCaptureSection } from "@/components/resultaat/EmailCaptureSection";
 import { SEND_REPORT_ENABLED } from "@/lib/send-report-enabled";
+import { ScoreSpectrumBar } from "@/components/ScoreSpectrumBar";
+import { DIMENSION_X, DIMENSION_Y } from "@/lib/resultaat/dimensionCopy";
 
 type Props = {
   payload: AssessmentSessionPayload;
@@ -59,6 +61,28 @@ export function ResultaatResultsBody({ payload }: Props) {
           transition={{ duration: 0.4, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
         >
           <AxisPlot x={x} y={y} apps={APPS_IN_SPACE} />
+        </motion.div>
+
+        <motion.div
+          className="mx-auto flex w-full max-w-xl flex-col gap-8"
+          initial={reduceMotion ? false : { opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <ScoreSpectrumBar
+            score={x}
+            labelLeft={DIMENSION_X.labelLeft}
+            labelRight={DIMENSION_X.labelRight}
+            accentLeft="text-blue-300"
+            accentRight="text-purple-300"
+          />
+          <ScoreSpectrumBar
+            score={y}
+            labelLeft={DIMENSION_Y.labelBottom}
+            labelRight={DIMENSION_Y.labelTop}
+            accentLeft="text-blue-300"
+            accentRight="text-purple-300"
+          />
         </motion.div>
 
         <motion.div
@@ -142,7 +166,7 @@ export function ResultaatResultsBody({ payload }: Props) {
           <VergelijkToolsSection />
         </motion.div>
 
-        <div className="flex justify-center pt-2">
+        <div className="flex justify-start pt-2">
           <Link
             href="/start"
             className={cn(
