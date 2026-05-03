@@ -39,7 +39,7 @@ export default function Home() {
                 className="h-6 w-6 shrink-0 object-contain opacity-90"
                 aria-hidden
               />
-              <span>TaalDNA / Jouw taalleerstijl</span>
+              <span>TaalDNA Profiel / Jouw taalleerstijl</span>
             </p>
             <h1 className="text-balance font-sans text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
               Ontdek hoe jij talen leert

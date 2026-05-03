@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import "./shadcn-tw.css";
 import { cn } from "@/lib/utils";
+import { APP_VERSION } from "@/lib/version";
 import { PageTransition } from "@/components/page-transition";
 
 const inter = Inter({
@@ -18,9 +19,9 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "TaalDNA — Ontdek hoe jij écht talen leert",
+  title: "TaalDNA Profiel",
   description:
-    "Geen vragenlijst. We meten gedrag in korte oefeningen. Krijg een persoonlijk taalleerprofiel in 9 minuten.",
+    "Ontdek hoe jij écht talen leert. TaalDNA Profiel meet jouw leergedrag en geeft je een persoonlijk taalprofiel in 9 minuten.",
 
   openGraph: {
     title: "TaalDNA — Ontdek hoe jij écht talen leert",
@@ -65,10 +66,17 @@ export default function RootLayout({
       <body
         className={cn(
           inter.className,
-          "min-h-screen overflow-x-hidden bg-background font-sans text-foreground antialiased"
+          "flex min-h-screen flex-col overflow-x-hidden bg-background font-sans text-foreground antialiased"
         )}
       >
-        <PageTransition>{children}</PageTransition>
+        <div className="flex min-h-0 flex-1 flex-col">
+          <PageTransition>{children}</PageTransition>
+        </div>
+        <footer className="flex shrink-0 justify-end px-4 py-3 sm:px-8">
+          <span className="text-xs text-muted-foreground/70 select-none tabular-nums">
+            v{APP_VERSION}
+          </span>
+        </footer>
       </body>
     </html>
   );
