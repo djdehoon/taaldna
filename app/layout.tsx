@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import "./shadcn-tw.css";
 import { cn } from "@/lib/utils";
@@ -77,6 +78,7 @@ export default function RootLayout({
             v{APP_VERSION}
           </span>
         </footer>
+        <Analytics />
       </body>
     </html>
   );
