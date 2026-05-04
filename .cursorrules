@@ -62,3 +62,36 @@ supabase/     → Supabase migraties en config
 - Geen hardcoded API keys of secrets
 - Geen onnodige dependencies toevoegen
 - Nooit code verwijderen zonder overleg
+
+## ROUTING
+/ → Landing page
+/start → Onboarding
+/assessment → 6 oefeningen in volgorde
+/resultaat → 2D profiel reveal + score
+/aanbevelingen → App aanbevelingen
+/dev → Developer testomgeving
+
+## BRANCH
+- Werk altijd op `dev`, merge naar `main` na CI checks
+- Nooit direct op `main` pushen
+
+## VERSIE
+- Update `package.json` én `lib/app-version.ts` bij elke taak
+- Patch (Z) bij elke taak · Minor (Y) bij feature-groep · Major (X) bij redesign
+- Elke prompt eindigt met:
+  1. Verhoog patch-versie in package.json: X.Y.Z → X.Y.(Z+1)
+  2. Update lib/app-version.ts: export const APP_VERSION = 'X.Y.(Z+1)'
+  3. Rapporteer: "✅ Versie bijgewerkt naar vX.Y.(Z+1)"
+
+## COMMIT FORMAAT
+vX.Y.Z type(scope): Imperatieve beschrijving (Engels, geen punt, ≤50 tekens)
+
+Voorbeelden:
+  v1.5.2 feat(analytics): Add Vercel Analytics component
+  v1.5.3 fix(voice): Add browser compatibility fallback
+
+## WERKWIJZE (altijd volgen)
+1. Lees .cursor/rules + scan bestaande codebase
+2. Toon plan eerst — wacht op goedkeuring
+3. Voer uit
+4. Sluit elke taak af met TESTSCRIPT (max 5 punten)
