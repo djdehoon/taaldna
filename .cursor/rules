@@ -1,42 +1,18 @@
-## PROJECT: TaalDNA
+# TaalDNA — Cursor Rules v9.0
 
-A language-learning style assessment tool (UI in Dutch; works for any target language).
-Users complete 4 interactive exercises (not questionnaires).
-We measure behavior, not self-report.
+## PROJECT
+Dutch language learning style assessment tool.
+Users complete 4 interactive exercises. We measure behavior, not self-report.
 Result: a 2D profile (Processing Style × Social Style) + honest app recommendations.
 
 ## TECH STACK
 - Next.js 14 (App Router)
-- TypeScript
+- TypeScript (strict — no `any`)
 - Tailwind CSS
 - Framer Motion (animations)
 - Shadcn/ui (components)
 - Supabase (database + email capture)
 - Vercel (deployment)
-
-## DESIGN PRINCIPLES
-- Mobile-first. Every screen must look great on iPhone.
-- Clean, modern, Dutch language throughout.
-- Animations should feel smooth, not flashy.
-- Progress bar always visible during assessment.
-- No clutter. One action per screen.
-
-## THE 4 EXERCISES (core product)
-1. Contextueel Raden — user guesses word from context (measures: analyse vs. intuïtie)
-2. Luister en Schrijf — user hears audio, types what they hear (measures: auditieve verwerking)
-3. 30 Seconden Split-Screen — timed interaction choice (measures: sociaal vs. solo)
-4. Bouw de Zin (Drag & Drop) — user drags words into correct order (measures: systematisch vs. intuïtief)
-
-## 2D PROFILE AXES
-- X-axis: Analytisch ←→ Intuïtief
-- Y-axis: Solo ←→ Sociaal
-
-## APP RECOMMENDATIONS (honest, no marketing)
-- Duolingo: goed voor intuïtieve, sociale leerders
-- Anki: goed voor analytische, solo leerders
-- Pimsleur: goed voor auditieve leerders
-- Babbel: goed voor analytische, gestructureerde leerders
-- italki: goed voor sociale leerders die echte gesprekken willen
 
 ## ROUTING
 / → Landing page
@@ -44,64 +20,41 @@ Result: a 2D profile (Processing Style × Social Style) + honest app recommendat
 /assessment → 4 oefeningen in volgorde
 /resultaat → 2D profiel reveal + score
 /aanbevelingen → App aanbevelingen op basis van profiel
-/vergelijk/taaldna → TaalDNA vs. andere leerstijl-tools
-/vergelijk/polycards → PolyCards vs. andere flashcard-apps
 /bedankt → Email capture + bedankpagina
+/dev → Developer testomgeving (alle vragen los testbaar)
 
-## CODE STYLE
-- Always use TypeScript
-- Component-based architecture
-- Keep components small and focused
-- Use Framer Motion for page transitions
-- Show plan first, then execute
+## CODE REGELS
+- Lees de codebase eerst, pas alleen gevraagde wijzigingen toe
+- Voeg "use client" toe bij: useState, useEffect, onClick, Framer Motion, localStorage, window
+- Gebruik next/image voor afbeeldingen, next/link voor interne navigatie
+- Mobile-first. Elke pagina moet goed werken op iPhone.
+- Eén actie per scherm. Geen clutter.
+- Animaties: smooth, niet flashy
 
-## 🔧 DEV SERVER MANAGEMENT
+## BRANCH & VERSIE
+- Werk altijd op `dev`, merge naar `main` via `acc` na checks
+- Update `package.json` én `lib/version.ts` bij elke taak
+- Versie: Patch (Z) bij elke taak · Minor (Y) bij feature-groep · Major (X) bij redesign
 
-Before starting `npm run dev`, ALWAYS kill existing processes on ports 3000-3004:
+## COMMIT FORMAAT
+vX.Y.Z type(scope): Imperatieve beschrijving (Engels, geen punt)
 
-```powershell
-@(3000,3001,3002,3003,3004) | ForEach-Object {
-  $p = Get-NetTCPConnection -LocalPort $_ -EA SilentlyContinue
-  if ($p) { Stop-Process -Id $p.OwningProcess -Force }
-}
-```
-
-Then clear the Next.js cache and start fresh:
-```powershell
-Remove-Item -Recurse -Force .next -EA SilentlyContinue
-npm run dev
-```
-
-NEVER start `npm run dev` without first killing existing port processes.
-The dev server must always run on port 3000.
-
-## GIT COMMIT STANDAARD (verplicht, altijd volgen)
-
-Elke commit volgt dit formaat:
-  vX.Y.Z type(scope): Imperatief beschrijving
-
-Regels (Chris Beams):
-- Max 50 tekens in de subject
-- Hoofdletter aan het begin
-- Geen punt aan het einde
-- Gebiedende wijs: "Add" niet "Added"
-- Engels
-
-Types: feat | fix | docs | style | refactor | test | chore | perf
+Types: feat ✨ | fix 🐛 | refactor ♻️ | chore 🔧 | infra ⚙️ | docs 📝 | perf ⚡
 
 Voorbeelden:
-  v1.3.9 feat(branding): Add page title and version badge
-  v1.4.0 feat(nav): Add back button to /start page
-  v1.4.1 feat(results): Add color score spectrum bar
+  v1.4.1 feat(results): Add color spectrum score bar
   v1.4.2 fix(assessment): Correct slug validation order
+  v1.4.3 chore(deps): Update Next.js to 14.2
 
-NOOIT:
-  - "WIP" naar main pushen
-  - Verleden tijd ("Added feature")
-  - Intenties beschrijven ("Going to add...")
-  - Commits zonder versienummer
+## WERKWIJZE (altijd volgen)
+1. Lees .cursor/rules + scan bestaande codebase
+2. Toon plan eerst — wacht op goedkeuring
+3. Voer uit
+4. Sluit elke taak af met een TESTSCRIPT van max 5 punten
 
-Versie ophogen:
-  - Patch (Z): elke Cursor-taak
-  - Minor (Y): feature-groep compleet
-  - Major (X): complete redesign
+## TESTSCRIPT (verplicht aan het einde van elke prompt)
+Formaat:
+  ## TESTSCRIPT
+  1. [Concrete actie] → [Verwacht resultaat]
+  2. ...
+  (max 5 punten)

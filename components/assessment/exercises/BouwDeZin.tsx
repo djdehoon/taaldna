@@ -54,7 +54,7 @@ function SortableRow({
     <div ref={setNodeRef} style={style}>
       <button
         type="button"
-        className={`flex min-h-11 w-full touch-manipulation items-center gap-3 rounded-xl border border-border bg-card px-4 py-4 text-left text-base shadow-sm outline-none transition hover:bg-muted/40 focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/50 active:cursor-grabbing ${
+        className={`flex min-h-11 w-full touch-none items-center gap-3 rounded-xl border border-border bg-card px-4 py-4 text-left text-base shadow-sm outline-none transition hover:bg-muted/40 focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/50 active:cursor-grabbing ${
           isDragging ? "z-10 scale-[1.02] opacity-90 shadow-md" : ""
         }`}
         {...attributes}
@@ -90,9 +90,7 @@ export function BouwDeZin({ onComplete }: Props) {
 
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 6 } }),
-    useSensor(TouchSensor, {
-      activationConstraint: { delay: 180, tolerance: 6 },
-    }),
+    useSensor(TouchSensor, { activationConstraint: { distance: 6 } }),
     useSensor(KeyboardSensor, {
       coordinateGetter: sortableKeyboardCoordinates,
     })
