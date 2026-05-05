@@ -44,6 +44,14 @@ export function ResultaatResultsBody({ payload }: Props) {
         <div className="max-w-xl">
           <SiteKickerLink className="mb-0" />
         </div>
+        <div className="flex justify-center">
+          <Link
+            href="/resultaat/v2"
+            className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#0f0f1a] transition-colors hover:bg-white/90"
+          >
+            Bekijk nieuwe versie →
+          </Link>
+        </div>
         <motion.h1
           className="flex flex-wrap items-center justify-center gap-3 text-center text-3xl font-semibold tracking-tight sm:text-4xl"
           initial={reduceMotion ? false : { opacity: 0, y: 16 }}
