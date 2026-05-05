@@ -4,7 +4,7 @@ import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import "./shadcn-tw.css";
 import { cn } from "@/lib/utils";
-import { APP_VERSION } from "@/lib/version";
+import { APP_VERSION } from "@/lib/app-version";
 import { PageTransition } from "@/components/page-transition";
 
 const inter = Inter({

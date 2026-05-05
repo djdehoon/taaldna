@@ -1,8 +1,8 @@
-# TaalDNA — Cursor Rules v9.0
+# TaalDNA — Cursor Rules v10.0
 
 ## PROJECT
 Dutch language learning style assessment tool.
-Users complete 4 interactive exercises. We measure behavior, not self-report.
+Users complete 6 interactive exercises. We measure behavior, not self-report.
 Result: a 2D profile (Processing Style × Social Style) + honest app recommendations.
 
 ## TECH STACK
@@ -17,7 +17,7 @@ Result: a 2D profile (Processing Style × Social Style) + honest app recommendat
 ## ROUTING
 / → Landing page
 /start → Onboarding
-/assessment → 4 oefeningen in volgorde
+/assessment → 6 oefeningen in volgorde
 /resultaat → 2D profiel reveal + score
 /aanbevelingen → App aanbevelingen op basis van profiel
 /bedankt → Email capture + bedankpagina
@@ -32,8 +32,8 @@ Result: a 2D profile (Processing Style × Social Style) + honest app recommendat
 - Animaties: smooth, niet flashy
 
 ## BRANCH & VERSIE
-- Werk altijd op `dev`, merge naar `main` via `acc` na checks
-- Update `package.json` én `lib/version.ts` bij elke taak
+- Werk altijd op `dev`, merge naar `main` via CI checks
+- Update `package.json` én `lib/app-version.ts` bij elke taak
 - Versie: Patch (Z) bij elke taak · Minor (Y) bij feature-groep · Major (X) bij redesign
 
 ## COMMIT FORMAAT
